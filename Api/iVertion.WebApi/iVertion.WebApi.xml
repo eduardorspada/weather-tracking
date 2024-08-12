@@ -1,0 +1,408 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>iVertion.WebApi</name>
+    </assembly>
+    <members>
+        <member name="T:iVertion.WebApi.Controllers.AccountController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:iVertion.WebApi.Controllers.PersonController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:iVertion.WebApi.Controllers.PersonController.#ctor(iVertion.Application.Interfaces.IPersonService)">
+            <summary>
+            Retuns persons information
+            </summary>
+            <param name="personService"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:iVertion.WebApi.Controllers.PersonController.GetPersonsAsync(iVertion.Domain.FiltersDb.PersonFilterDb)">
+            <summary>
+            Retuns person information
+            </summary>
+            <param name="personFilterDb"></param>
+            <returns></returns>
+        </member>
+        <member name="M:iVertion.WebApi.Controllers.PersonController.GetPersonByIdAsync(System.Int32)">
+            <summary>
+            Retuns person information by id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:iVertion.WebApi.Controllers.PersonController.AddPersonAsync(iVertion.Application.DTOs.PersonDTO)">
+            <summary>
+            Create person information by PersonDTO
+            </summary>
+            <param name="personDto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:iVertion.WebApi.Controllers.TokenController">
+            <summary>
+            Token
+            </summary>
+        </member>
+        <member name="M:iVertion.WebApi.Controllers.TokenController.#ctor(iVertion.Domain.Account.IAuthenticate,Microsoft.Extensions.Configuration.IConfiguration,iVertion.Domain.Account.IUserInterface{iVertion.Infra.Data.Identity.ApplicationUser},iVertion.Application.Interfaces.IUserProfileService,iVertion.Application.Interfaces.IRoleProfileService,iVertion.Application.Interfaces.IAdditionalUserRoleService,iVertion.Application.Interfaces.ITemporaryUserRoleService,iVertion.Application.Interfaces.IPersonService)">
+            <summary>
+            Contructor.
+            </summary>
+            <param name="authentication"></param>
+            <param name="configuration"></param>
+            <param name="userService"></param>
+            <param name="userProfileService"></param>
+            <param name="roleProfileService"></param>
+            <param name="additionalUserRoleService"></param>
+            <param name="temporaryUserRoleService"></param>
+            <param name="personService"></param>
+        </member>
+        <member name="M:iVertion.WebApi.Controllers.TokenController.ValidateToken">
+            <summary>
+            Validate the token
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:iVertion.WebApi.Controllers.TokenController.Login(iVertion.WebApi.Models.LoginModel)">
+            <summary>
+            Returns a Bearer Token for the user from "userInfo".
+            </summary>
+            <param name="userInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="T:iVertion.WebApi.Controllers.UserController">
+            <summary>
+            User
+            </summary>
+        </member>
+        <member name="M:iVertion.WebApi.Controllers.UserController.#ctor(iVertion.Domain.Account.IAuthenticate,iVertion.Domain.Account.IUserInterface{iVertion.Infra.Data.Identity.ApplicationUser},iVertion.Domain.Account.IRoleInterface{Microsoft.AspNetCore.Identity.IdentityRole},iVertion.Application.Interfaces.IUserProfileService,iVertion.Application.Interfaces.IRoleProfileService,iVertion.Application.Interfaces.IAdditionalUserRoleService,iVertion.Application.Interfaces.ITemporaryUserRoleService,iVertion.Application.Interfaces.IPersonService)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="authentication"></param>
+            <param name="userService"></param>
+            <param name="roleService"></param>
+            <param name="userProfileService"></param>
+            <param name="roleProfileService"></param>
+            <param name="additionalUserRoleService"></param>
+            <param name="temporaryUserRoleService"></param>
+            <param name="personService"></param>
+        </member>
+        <member name="M:iVertion.WebApi.Controllers.UserController.Get">
+            <summary>
+            Returns a list of users.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:iVertion.WebApi.Controllers.UserController.GetUserByIdAsync(System.String)">
+            <summary>
+            Returns a user by id.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:iVertion.WebApi.Controllers.UserController.CreateUser(iVertion.WebApi.Models.RegisterModel)">
+            <summary>
+            Creates a new user from the "userInfo" properties.
+            </summary>
+            <param name="userInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:iVertion.WebApi.Controllers.UserController.GetUserProfileAsync(iVertion.Domain.FiltersDb.UserProfileFilterDb)">
+            <summary>
+            Retuns user profile information
+            </summary>
+            <param name="userProfileFilterDb"></param>
+            <returns></returns>
+        </member>
+        <member name="M:iVertion.WebApi.Controllers.UserController.GetUserProfileByIdAsync(System.Int32)">
+            <summary>
+            Returns a user profile information
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:iVertion.WebApi.Controllers.UserController.GetRolesProfileAsync(System.Int32)">
+            <summary>
+            Returns a roles of user profile by id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:iVertion.WebApi.Controllers.UserController.AddRoleToUserProfileAsync(iVertion.WebApi.Models.RoleFromUserProfileIdModel)">
+            <summary>
+            Adds a Role to a User Profile by User Profile Id.
+            </summary>
+            <param name="roleFromUserProfileIdModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:iVertion.WebApi.Controllers.UserController.RemoveRoleFromUserProfileId(iVertion.WebApi.Models.RoleFromUserProfileIdModel)">
+            <summary>
+            Removes a Role from a User Profile by the Role name and the User Profile Id.
+            </summary>
+            <param name="roleFromUserProfileIdModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:iVertion.WebApi.Controllers.UserController.GetRoleProfileAsync(iVertion.Domain.FiltersDb.RoleProfileFilterDb)">
+            <summary>
+            Retuns role information
+            </summary>
+            <param name="roleProfileFilterDb"></param>
+            <returns></returns>
+        </member>
+        <member name="M:iVertion.WebApi.Controllers.UserController.GetAdditionalUserRolesAsync(iVertion.Domain.FiltersDb.AdditionalUserRoleFilterDb)">
+            <summary>
+            Returns an array of additional user roles.
+            </summary>
+            <param name="additionalUserRoleFilterDb"></param>
+            <returns></returns>
+        </member>
+        <member name="M:iVertion.WebApi.Controllers.UserController.GetAdditionalUserRoleByIdAsync(System.Int32)">
+            <summary>
+            Returns an additional user role by its id.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:iVertion.WebApi.Controllers.UserController.AddAddtionalUserRoleAsync(iVertion.WebApi.Models.AdditionalUserRoleModel)">
+            <summary>
+            Adds an additional role to a user beyond the role profile they belong to.
+            </summary>
+            <param name="additionalUserRoleModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:iVertion.WebApi.Controllers.UserController.RemoveAddtionalUserRoleAsync(iVertion.WebApi.Models.AdditionalUserRoleModel)">
+            <summary>
+            Remove an additional role to a user beyond the role profile they belong to.
+            </summary>
+            <param name="additionalUserRoleModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:iVertion.WebApi.Controllers.UserController.GetTemporaryUserRolesAsync(iVertion.Domain.FiltersDb.TemporaryUserRoleFilterDb)">
+            <summary>
+            Returns an array of temporary user roles.
+            </summary>
+            <param name="temporaryUserRoleFilterDb"></param>
+            <returns></returns>
+        </member>
+        <member name="M:iVertion.WebApi.Controllers.UserController.GetTemporaryUserRoleByIdAsync(System.Int32)">
+            <summary>
+            Returns a temporary user role by its id.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:iVertion.WebApi.Controllers.UserController.AddTemporaryUserRoleAsync(iVertion.WebApi.Models.TemporaryUserRoleModel)">
+            <summary>
+            Adds a new temporary user role.
+            </summary>
+            <param name="temporaryUserRoleModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:iVertion.WebApi.Controllers.UserController.UpdateTemporaryUserRoleAsync(iVertion.WebApi.Models.EditTemporaryUserRoleModel)">
+            <summary>
+            Updates the start and expiration dates of a temporary user role.
+            </summary>
+            <param name="editTemporaryUserRoleModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:iVertion.WebApi.Controllers.UserController.RemoveTemporaryUserRoleAsync(iVertion.WebApi.Models.RemoveTemporaryUserRoleModel)">
+            <summary>
+            Removes a temporary role from a user.
+            </summary>
+            <param name="removeTemporaryUserRoleModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:iVertion.WebApi.Controllers.UserController.GetRolesAsync">
+            <summary>
+            Returns a list of roles.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:iVertion.WebApi.Controllers.UserController.GetUserRolesAsync(System.String)">
+            <summary>
+            Returns a list of roles off some username.
+            </summary>
+            <param name="userName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:iVertion.WebApi.Controllers.UserController.AddUserRoleAsync(iVertion.WebApi.Models.UserProfileModel)">
+            <summary>
+            Creates a new user role profile
+            </summary>
+            <param name="userProfileModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:iVertion.WebApi.Controllers.UserController.ResetUserPassword(iVertion.WebApi.Models.ResetPasswordModel)">
+            <summary>
+            Change a user's password from the "passwordModel" properties.
+            </summary>
+            <param name="passwordModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:iVertion.WebApi.Controllers.UserController.ResetMyUserPassword(iVertion.WebApi.Models.ResetMyPasswordModel)">
+            <summary>
+            Change the authenticated user's password from the "myPasswordModel" properties.
+            </summary>
+            <param name="myPasswordModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:iVertion.WebApi.Controllers.UserController.EditeUserName(iVertion.WebApi.Models.EditUserNameModel)">
+            <summary>
+            Changes a user's username from the "userNameModel" properties.
+            </summary>
+            <param name="userNameModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:iVertion.WebApi.Controllers.UserController.EditeMyUserName(iVertion.WebApi.Models.EditMyUserNameModel)">
+            <summary>
+            Changes the authenticated user's username from the "myUserNameModel" properties.
+            </summary>
+            <param name="myUserNameModel"></param>
+            <returns></returns>
+        </member>
+        <member name="T:iVertion.WebApi.Models.AdditionalUserRoleModel">
+            <summary>
+            This model is the body of users' requests for additional roles.
+            </summary>
+        </member>
+        <member name="P:iVertion.WebApi.Models.AdditionalUserRoleModel.Role">
+            <summary>
+            A role registered in the Identity roles.
+            </summary>
+        </member>
+        <member name="P:iVertion.WebApi.Models.AdditionalUserRoleModel.UserName">
+            <summary>
+            An existing username on Identity.
+            </summary>
+        </member>
+        <member name="T:iVertion.WebApi.Models.EditTemporaryUserRoleModel">
+            <summary>
+            This is the model for update a temporary user role.
+            </summary>
+        </member>
+        <member name="P:iVertion.WebApi.Models.EditTemporaryUserRoleModel.Id">
+            <summary>
+            An integer as Id.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:iVertion.WebApi.Models.EditTemporaryUserRoleModel.StartDate">
+            <summary>
+            The start date of the temporary user role.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:iVertion.WebApi.Models.EditTemporaryUserRoleModel.ExpirationDate">
+            <summary>
+            The end date of the temporary user role.
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:iVertion.WebApi.Models.RegisterModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:iVertion.WebApi.Models.RegisterModel.Email">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:iVertion.WebApi.Models.RegisterModel.Password">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:iVertion.WebApi.Models.RegisterModel.ConfirmPassword">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:iVertion.WebApi.Models.RegisterModel.IsEnabled">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:iVertion.WebApi.Models.RegisterModel.UserProfileId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:iVertion.WebApi.Models.RegisterModel.PersonId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:iVertion.WebApi.Models.RegisterPerson">
+            <summary>
+            Register Person Model
+            </summary>
+        </member>
+        <member name="P:iVertion.WebApi.Models.RegisterPerson.FirstName">
+            <summary>
+            First Name, string, Is Required
+            </summary>
+        </member>
+        <member name="P:iVertion.WebApi.Models.RegisterPerson.LastName">
+            <summary>
+            Last Name, string, Is Required
+            </summary>
+        </member>
+        <member name="P:iVertion.WebApi.Models.RegisterPerson.Birthday">
+            <summary>
+            Birthday, Datetime, Is Required
+            </summary>
+        </member>
+        <member name="P:iVertion.WebApi.Models.RegisterPerson.ProfilePicture">
+            <summary>
+            Profile Picture, string, Is Required
+            </summary>
+        </member>
+        <member name="T:iVertion.WebApi.Models.RemoveTemporaryUserRoleModel">
+            <summary>
+            This model is the body of users' requests for temporary roles.
+            </summary>
+        </member>
+        <member name="P:iVertion.WebApi.Models.RemoveTemporaryUserRoleModel.Role">
+            <summary>
+            A role registered in the Identity roles.
+            </summary>
+        </member>
+        <member name="P:iVertion.WebApi.Models.RemoveTemporaryUserRoleModel.UserName">
+            <summary>
+            An existing username on Identity.
+            </summary>
+        </member>
+        <member name="T:iVertion.WebApi.Models.TemporaryUserRoleModel">
+            <summary>
+            This is the model for adding a new temporary user role.
+            </summary>
+        </member>
+        <member name="P:iVertion.WebApi.Models.TemporaryUserRoleModel.Role">
+            <summary>
+            A role registered in the Identity roles.
+            </summary>
+        </member>
+        <member name="P:iVertion.WebApi.Models.TemporaryUserRoleModel.UserName">
+            <summary>
+            An existing username on Identity.
+            </summary>
+        </member>
+        <member name="P:iVertion.WebApi.Models.TemporaryUserRoleModel.StartDate">
+            <summary>
+            The start date of the temporary user role.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:iVertion.WebApi.Models.TemporaryUserRoleModel.ExpirationDate">
+            <summary>
+            The end date of the temporary user role.
+            </summary>
+            <value></value>
+        </member>
+    </members>
+</doc>

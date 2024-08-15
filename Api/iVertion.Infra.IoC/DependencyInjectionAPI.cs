@@ -48,11 +48,11 @@ namespace iVertion.Infra.IoC
 
                     
                     // Local
-                    //string connectionString = $"Server={host};Database={database};Integrated Security=True;UID={user};PWD={password};TrustServerCertificate=true";
+                    string connectionString = $"Server={host};Database={database};Integrated Security=True;UID={user};PWD={password};TrustServerCertificate=true";
                     // Local to Azure ODBC
                     //string connectionString = $"Server=tcp:{host},{port};Database={database};Uid={user};Pwd={password};Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;";
                     // ADO.NET 
-                    string connectionString = $"Server={host},{port};Initial Catalog={database};Persist Security Info={persistSecurityInfo};User ID={user};Password={password};MultipleActiveResultSets={multipleActiveResultSets};Encrypt={encrypt};TrustServerCertificate={trustServerCertificate};Connection Timeout={connectionTimeout};";
+                    // string connectionString = $"Server={host},{port};Initial Catalog={database};Persist Security Info={persistSecurityInfo};User ID={user};Password={password};MultipleActiveResultSets={multipleActiveResultSets};Encrypt={encrypt};TrustServerCertificate={trustServerCertificate};Connection Timeout={connectionTimeout};";
                     options.UseSqlServer(connectionString, b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName));
                     // ================================================================
 
@@ -72,8 +72,16 @@ namespace iVertion.Infra.IoC
             services.AddScoped<IUserProfileRepository, UserProfileRepository>();
             services.AddScoped<IRoleProfileRepository, RoleProfileRepository>();
 
+            // Address Repositories
+            services.AddScoped<IAddressRepository, AddressRepository>();
+            services.AddScoped<ICityRepository, CityRepository>();
+            services.AddScoped<IStateRepository, StateRepository>();
+            services.AddScoped<ICountryRepository, CountryRepository>();
+
+
             // Person Repositories
             services.AddScoped<IPersonRepository, PersonRepository>();
+            services.AddScoped<IPersonAddressRepository, PersonAddressRepository>();
 
             // Database Initializer Services
 
@@ -95,6 +103,14 @@ namespace iVertion.Infra.IoC
 
             // Person Services
             services.AddScoped<IPersonService, PersonService>();
+            services.AddScoped<IPersonAddressService, PersonAddressService>();
+
+            // Address Services
+            services.AddScoped<IAddressService, AddressService>();
+            services.AddScoped<ICityService, CityService>();
+            services.AddScoped<IStateService, StateService>();
+            services.AddScoped<ICountryService, CountryService>();
+
 
             // AutoMapper for DTOs
             services.AddAutoMapper(typeof(DomainToDTOMappingProfile));

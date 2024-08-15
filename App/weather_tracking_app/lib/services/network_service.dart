@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'auth_service.dart';
 
 class NetworkService {
-  static const String baseUrl = 'http://localhost:5001/api/';
+  static const String baseUrl = 'http://10.0.2.2:5001/api/';
   final AuthService _authService = AuthService();
 
   Future<Map<String, dynamic>> loginUser(String email, String password) async {

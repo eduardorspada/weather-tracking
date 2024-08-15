@@ -8,7 +8,6 @@ namespace iVertion.Domain.Entities
         public string? Name { get; private set; }
         public string? Acronym { get; private set; }
         public int Code { get; private set; }
-        public IEnumerable<State>? States { get; set; }
         public IEnumerable<Address>? Addresses { get; set; }
 
         public Country(string name,

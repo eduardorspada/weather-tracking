@@ -9,14 +9,6 @@ namespace iVertion.Infra.Data.EntitiesConfiguration
         public void Configure(EntityTypeBuilder<Address> builder)
         {
             builder.HasKey(t => t.Id);
-            builder.Property(p => p.ZipCode).HasMaxLength(15).IsRequired();
-            builder.Property(p => p.Street).HasMaxLength(255).IsRequired();
-            builder.Property(p => p.Number).HasMaxLength(15).IsRequired();
-            builder.Property(p => p.Complement).HasMaxLength(150);
-            builder.HasOne(n => n.Neighborhood)
-                .WithMany(a => a.Addresses)
-                .HasForeignKey(n => n.NeighborhoodId)
-                .IsRequired();
         }
     }
 }

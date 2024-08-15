@@ -6,7 +6,7 @@ namespace iVertion.Domain.Interfaces
 {
     public interface ICountryRepository
     {
-        Task<PagedBaseResponse<Country>> GetContryAsync(CountryFilterDb request);
+        Task<PagedBaseResponse<Country>> GetCountryAsync(CountryFilterDb request);
         Task<Country> GetCountryByIdAsync(int id);
     }
 }

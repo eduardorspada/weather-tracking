@@ -16,6 +16,14 @@ namespace iVertion.Application.Mappings
 
             // Person
             CreateMap<Person, PersonDTO>().ReverseMap();
+            CreateMap<PersonAddress, PersonAddressDTO>().ReverseMap();
+
+            // Address
+            CreateMap<Address, AddressDTO>().ReverseMap();
+            CreateMap<City, CityDTO>().ReverseMap();
+            CreateMap<State, StateDTO>().ReverseMap();
+            CreateMap<Country, CountryDTO>().ReverseMap();
+
         }
     }
 }

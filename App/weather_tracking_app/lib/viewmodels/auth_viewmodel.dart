@@ -51,7 +51,10 @@ class AuthViewModel extends ChangeNotifier {
 
       // Abre o navegador para o usuário obter o código de autorização
       if (await canLaunchUrl(googleAuthUrl)) {
-        await launchUrl(googleAuthUrl);
+        await launchUrl(
+          googleAuthUrl,
+          mode: LaunchMode.externalApplication,
+        );
       } else {
         throw 'Não foi possível abrir o navegador';
       }

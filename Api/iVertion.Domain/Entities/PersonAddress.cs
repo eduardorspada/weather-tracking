@@ -6,9 +6,9 @@ namespace iVertion.Domain.Entities
     public class PersonAddress : Entity
     {
         public int PersonId { get; private set; }
-        public IEnumerable<Person>? Persons { get; set; }
+        public Person Person { get; set; }
         public int AddressId { get; private set; }
-        public IEnumerable<Address>? Addresses { get; set; }
+        public Address Address { get; set; }
 
         public PersonAddress(int personId,
                              int addressId,

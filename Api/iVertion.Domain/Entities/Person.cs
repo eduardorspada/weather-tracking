@@ -17,6 +17,9 @@ namespace iVertion.Domain.Entities
         // Opcionais
         public string? ProfilePicture { get; private set; }
 
+
+        public ICollection<PersonAddress> PersonAddresses { get; set; }
+
         // Construtores
         public Person(string firstName, string lastName, DateTime? birthday, string? profilePicture)
         {

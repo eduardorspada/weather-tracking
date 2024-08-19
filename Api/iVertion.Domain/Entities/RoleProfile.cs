@@ -23,7 +23,7 @@ namespace iVertion.Domain.Entities
                            bool active)
         {
             DomainExceptionValidation.When(id < 0,
-                                "Invalid Id, must be up to zero.");
+                                "Invalid Id, must greater than zero.");
             ValidationDomain(role,
                              userProfileId);
             Id = id;
@@ -49,7 +49,7 @@ namespace iVertion.Domain.Entities
             DomainExceptionValidation.When(role.Length > 25,
                                            "Invalid Role, too long, max 25 characters.");
             DomainExceptionValidation.When(userProfileId <= 0,
-                                           "Invalid UserProfileId Id, must be up to zero.");
+                                           "Invalid UserProfileId Id, must greater than zero.");
             
             Role = role;
             UserProfileId = userProfileId;

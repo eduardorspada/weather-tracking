@@ -31,7 +31,7 @@ namespace iVertion.Infra.Data.Identity
                     IsEnabled = true,
                     SecurityStamp = Guid.NewGuid().ToString(),
                     UserProfileId = 1,
-                    PersonId = 1
+                    PersonId = 0
                 };
 
                 IdentityResult result = _userManager.CreateAsync(user, "MdRPgW/*-2023").Result;
@@ -120,6 +120,15 @@ namespace iVertion.Infra.Data.Identity
                 {
                     Name = "Admin",
                     NormalizedName = "ADMIN"
+                };
+                _ = _roleManager.CreateAsync(role).Result;
+            }
+            if (!_roleManager.RoleExistsAsync("AddWeather").Result)
+            {
+                IdentityRole role = new()
+                {
+                    Name = "AddWeather",
+                    NormalizedName = "ADDWEATHER"
                 };
                 _ = _roleManager.CreateAsync(role).Result;
             }

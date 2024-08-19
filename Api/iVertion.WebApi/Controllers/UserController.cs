@@ -93,6 +93,21 @@ namespace iVertion.WebApi.Controllers
             }
         }
         /// <summary>
+        /// Returns a user by id.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("GetMyUserInformation")]
+        [Authorize]
+        public async Task<ActionResult> GetUserByIdAsync(){
+            var userId = User.FindFirst("UId").Value;
+            var user = await _userService.GetUserByIdAsync(userId);
+            if (user == null){
+                return NotFound();
+            } else {
+                return Ok(user);
+            }
+        }
+        /// <summary>
         /// Creates a new user from the "userInfo" properties.
         /// </summary>
         /// <param name="userInfo"></param>
@@ -102,6 +117,34 @@ namespace iVertion.WebApi.Controllers
         [Authorize(Roles = "AddUser")]
         public async Task<ActionResult> CreateUser ([FromBody] RegisterModel userInfo)
         {
+            var result = await _authentication.RegisterUser(userInfo.Email,
+                                                            userInfo.Password,
+                                                            userInfo.IsEnabled,
+                                                            userInfo.UserProfileId,
+                                                            userInfo.PersonId
+                                                            );
+            if (result)
+            {
+                return Ok($"User {userInfo.Email} was created successfully.");
+            }
+            else
+            {
+                ModelState.AddModelError("error", "We had a problem compiling the data.");
+                return BadRequest(ModelState);
+            }
+        }
+        /// <summary>
+        /// Creates a new user from the "userInfo" properties.
+        /// </summary>
+        /// <param name="userInfo"></param>
+        /// <returns></returns>
+
+        [HttpPost("signup")]
+        public async Task<ActionResult> Signup([FromBody] RegisterModel userInfo)
+        {
+            userInfo.UserProfileId = 5;
+            userInfo.PersonId = 0;
+            userInfo.IsEnabled = true;
             var result = await _authentication.RegisterUser(userInfo.Email,
                                                             userInfo.Password,
                                                             userInfo.IsEnabled,

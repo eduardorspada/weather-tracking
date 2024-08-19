@@ -162,17 +162,11 @@ namespace iVertion.WebApi.Controllers
                 {
                     new Claim("email", email),
                     new Claim("UId", user.Id),
-                    new Claim("Name", name),
-
-                    // new Claim("Data", roles.ToString()),
-                    // new Claim(ClaimTypes.Role, roles),
-
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
                 };
 
                 foreach (var role in roles) 
                 {
-                    // claims.Add(new Claim(ClaimTypes.Role, role.Name));
                     claims.Add(new Claim(ClaimTypes.Role, role));
                 }
                 

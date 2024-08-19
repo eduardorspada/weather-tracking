@@ -26,6 +26,15 @@ namespace iVertion.Infra.Data.Context
         public DbSet<State>? States { get; set; }
         public DbSet<Country>? Countries { get; set; }
 
+        // Devices
+        public DbSet<Device>? Devices { get; set; }
+
+        // Weather
+        public DbSet<WeatherCondition>? WeatherConditions { get; set; }
+        public DbSet<WeatherForecast>? WeatherForecasts { get; set; }
+        public DbSet<WeatherAlert>? WeatherAlerts { get; set; }
+        public DbSet<WeatherNotification>? WeatherNotifications { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

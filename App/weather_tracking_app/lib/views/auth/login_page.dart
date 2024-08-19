@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:provider/provider.dart';
 import '../../viewmodels/auth_viewmodel.dart';
 import '../../widgets/custom_text_field.dart';
@@ -37,13 +38,6 @@ class LoginPage extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      AnimatedContainer(
-                        duration: const Duration(milliseconds: 300),
-                        height: MediaQuery.of(context).viewInsets.bottom > 0 ? 100 : 300,
-                        child: Image.asset(
-                          'assets/logobranco.png',
-                        ),
-                      ),
                       const SizedBox(height: 20),
                       CustomTextField(
                         controller: viewModel.emailController,
@@ -106,12 +100,16 @@ class LoginPage extends StatelessWidget {
                           ),
                         ),
                       ),
-                      if (viewModel.isLoading)
-                        Expanded(
-                          child: Center(
-                            child: CircularProgressIndicator(),
-                          ),
+                      const SizedBox(height: 20),
+                      TextButton(
+                        onPressed: () => Modular.to.pushReplacementNamed('/register'),
+                        child: const Text(
+                          'Don\'t have an account? Sign Up',
+                          style: TextStyle(color: Colors.white),
                         ),
+                      ),
+                      if (viewModel.isLoading)
+                        const CircularProgressIndicator(),
                     ],
                   ),
                 ),

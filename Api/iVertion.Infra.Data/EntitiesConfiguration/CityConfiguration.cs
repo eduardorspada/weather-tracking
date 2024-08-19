@@ -17,6 +17,18 @@ namespace iVertion.Infra.Data.EntitiesConfiguration
                 .WithOne(c => c.City)
                 .HasForeignKey(c => c.CityId)
                 .IsRequired();
+            builder.HasMany(wc => wc.WeatherConditions)
+                .WithOne(c => c.City)
+                .HasForeignKey(c => c.CityId)
+                .IsRequired();
+            builder.HasMany(wf => wf.WeatherForecasts)
+                .WithOne(c => c.City)
+                .HasForeignKey(c => c.CityId)
+                .IsRequired();
+            builder.HasMany(wa => wa.WeatherAlerts)
+                .WithOne(c => c.City)
+                .HasForeignKey(c => c.CityId)
+                .IsRequired();
             builder.HasData(
                 new City(1, "São Paulo", 11, true),
                 new City(2, "Rio de Janeiro", 21, true),

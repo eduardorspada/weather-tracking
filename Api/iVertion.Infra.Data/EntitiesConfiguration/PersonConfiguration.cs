@@ -13,11 +13,15 @@ namespace iVertion.Infra.Data.EntitiesConfiguration
             builder.Property(p => p.FirstName).HasMaxLength(25).IsRequired();
             builder.Property(p => p.LastName).HasMaxLength(255).IsRequired();
             builder.Property(p => p.Birthday).IsRequired();
-            builder.Property(p => p.ProfilePicture).HasMaxLength(255).IsRequired();
-
-            builder.HasData(
-                new Person(1, "Administrator", "System", new DateTime(2000, 1, 1, 0, 0, 0), "images\\defautuserimage.png")
-            );
+            builder.Property(p => p.ProfilePicture).IsRequired();
+            builder.HasMany(pa => pa.PersonAddresses)
+                .WithOne(p => p.Person)
+                .HasForeignKey(pa => pa.PersonId)
+                .IsRequired();
+            builder.HasMany(d => d.Devices)
+                .WithOne(p => p.Person)
+                .HasForeignKey(p => p.PersonId)
+                .IsRequired();
         }
     }
 }

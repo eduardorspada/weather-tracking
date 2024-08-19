@@ -83,6 +83,15 @@ namespace iVertion.Infra.IoC
             services.AddScoped<IPersonRepository, PersonRepository>();
             services.AddScoped<IPersonAddressRepository, PersonAddressRepository>();
 
+            // Device Repositories
+            services.AddScoped<IDeviceRepository, DeviceRepository>();
+            
+            // Weather Repositories
+            services.AddScoped<IWeatherConditionRepository, WeatherConditionRepository>();
+            services.AddScoped<IWeatherForecastRepository, WeatherForecastRepository>();
+            services.AddScoped<IWeatherAlertRepository, WeatherAlertRepository>();
+            services.AddScoped<IWeatherNotificationRepository, WeatherNotificationRepository>();
+
             // Database Initializer Services
 
             services.AddScoped<IDatabaseInitializer, DatabaseInitializer>();
@@ -105,11 +114,21 @@ namespace iVertion.Infra.IoC
             services.AddScoped<IPersonService, PersonService>();
             services.AddScoped<IPersonAddressService, PersonAddressService>();
 
+            // Device Services
+            services.AddScoped<IDeviceService, DeviceService>();
+
             // Address Services
             services.AddScoped<IAddressService, AddressService>();
             services.AddScoped<ICityService, CityService>();
             services.AddScoped<IStateService, StateService>();
             services.AddScoped<ICountryService, CountryService>();
+
+            // Weather Services
+            services.AddScoped<IWeatherConditionService, WeatherConditionService>();
+            services.AddScoped<IWeatherForecastService, WeatherForecastService>();
+            services.AddScoped<IWeatherAlertService, WeatherAlertService>();
+            services.AddScoped<IWeatherNotificationService, WeatherNotificationService>();
+
 
 
             // AutoMapper for DTOs

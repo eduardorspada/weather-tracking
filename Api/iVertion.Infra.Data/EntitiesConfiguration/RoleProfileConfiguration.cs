@@ -23,7 +23,8 @@ namespace iVertion.Infra.Data.EntitiesConfiguration
                 new RoleProfile(5, "RemoveUser", 1, true),
                 new RoleProfile(6, "AddToRole", 1, true),
                 new RoleProfile(7, "RemoveFromRole", 1, true),
-                new RoleProfile(9, "Manager", 1, true)
+                new RoleProfile(9, "Manager", 1, true),
+                new RoleProfile(10, "AddWeather", 1, true)
 
             );
 

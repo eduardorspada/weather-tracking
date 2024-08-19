@@ -1,8 +1,9 @@
-import 'package:geolocator/geolocator.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:mobx/mobx.dart';
 import '../models/weather_model.dart';
 import '../services/weather_service.dart';
+import '../services/google_places_service.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 part 'weather_viewmodel.g.dart';
 
@@ -10,6 +11,9 @@ class WeatherViewModel = _WeatherViewModelBase with _$WeatherViewModel;
 
 abstract class _WeatherViewModelBase with Store {
   final WeatherService _weatherService = WeatherService();
+  final GooglePlacesService _googlePlacesService;
+
+  _WeatherViewModelBase(this._googlePlacesService);
 
   @observable
   WeatherModel? weather;
@@ -21,27 +25,25 @@ abstract class _WeatherViewModelBase with Store {
   Future<void> loadWeather() async {
     isLoading = true;
 
-    // Solicitar permissão para acessar a localização
     final status = await Permission.location.request();
 
     if (status.isGranted) {
       try {
-        // Obter a localização do usuário
-        Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+        Position position = await Geolocator.getCurrentPosition(
+            desiredAccuracy: LocationAccuracy.high);
         final lat = position.latitude;
         final lon = position.longitude;
 
-        // Aqui você pode usar uma API de geocodificação para converter lat/lon em nome da cidade
-        // Exemplo fictício de nome da cidade
-        final city = 'Curitiba, PR'; // Substitua com a cidade real obtida da geocodificação
+        // Obter cidade e estado usando Google Places API
+        final cityState = await _googlePlacesService.getCityAndState(lat, lon);
+        final cityName = '${cityState['city']}, ${cityState['state']}';
+        print(cityName);
 
-        weather = await _weatherService.fetchWeatherData(city);
+        weather = await _weatherService.fetchWeatherData(cityName);
       } catch (e) {
-        // Lidar com erros, como falhas na obtenção da localização
-        print('Error getting location: $e');
+        print('Error getting location or weather: $e');
       }
     } else {
-      // Lidar com o caso em que a permissão é negada
       print('Location permission denied');
     }
 

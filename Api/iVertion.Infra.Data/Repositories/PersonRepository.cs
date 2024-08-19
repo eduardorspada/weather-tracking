@@ -25,6 +25,8 @@ namespace iVertion.Infra.Data.Repositories
                 persons = persons.Where(c => c.LastName.Contains(request.LastName));
             if (request.Active != null)
                 persons = persons.Where(c => c.Active == request.Active);
+            if (request.UserId != null)
+                persons = persons.Where(c => c.UserId.ToString() == request.UserId);
             
             return await PagedBaseResponseHelper
                             .GetResponseAsync<PagedBaseResponse<Person>, Person>(persons, request);

@@ -19,6 +19,7 @@ namespace iVertion.Domain.Entities
 
 
         public ICollection<PersonAddress> PersonAddresses { get; set; }
+        public ICollection<Device>? Devices { get; set; }
 
         // Construtores
         public Person(string firstName, string lastName, DateTime? birthday, string? profilePicture)
@@ -33,7 +34,7 @@ namespace iVertion.Domain.Entities
 
         public Person(int id, string firstName, string lastName, DateTime? birthday, string? profilePicture)
         {
-            DomainExceptionValidation.When(id < 0, "Invalid Id, must be greater than or equal to zero.");
+            DomainExceptionValidation.When(id < 0, "Invalid Id, must greater than zero.");
             ValidateDomain(firstName, lastName, birthday);
             Id = id;
             FirstName = firstName;

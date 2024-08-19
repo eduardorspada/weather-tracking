@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import '../../viewmodels/weather_viewmodel.dart';
+import '../../widgets/profile_widget.dart';
 import '../../widgets/weather_card_widget.dart';
 
 class HomePage extends StatelessWidget {
@@ -41,6 +42,7 @@ class HomePage extends StatelessWidget {
                 Navigator.pop(context);
               },
             ),
+            ProfileWidget(),
           ],
         ),
       ),
@@ -80,7 +82,7 @@ class HomePage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            weather.city,
+                            weather.cityName,
                             style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.white),
                           ),
                           SizedBox(height: 16),

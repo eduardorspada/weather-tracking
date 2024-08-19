@@ -14,7 +14,6 @@ namespace iVertion.Domain.Entities
 
         public ICollection<PersonAddress> PersonAddresses { get; set; }
 
-
         public Address(int cityId,
                        int stateId,
                        int countryId,
@@ -32,7 +31,7 @@ namespace iVertion.Domain.Entities
                        bool active)
         {
             DomainExceptionValidation.When(id < 0,
-                                           "Invalid Id, must be up to zero.");
+                                           "Invalid Id, must greater than zero.");
             ValidationDomain(cityId,
                              stateId,
                              countryId);
@@ -56,11 +55,11 @@ namespace iVertion.Domain.Entities
         {
 
             DomainExceptionValidation.When(cityId < 0,
-                                           "Invalid City Id, must be up to zero.");
+                                           "Invalid City Id, must greater than zero.");
             DomainExceptionValidation.When(stateId < 0,
-                                           "Invalid State Id, must be up to zero.");
+                                           "Invalid State Id, must greater than zero.");
             DomainExceptionValidation.When(countryId < 0,
-                                           "Invalid Country Id, must be up to zero.");
+                                           "Invalid Country Id, must greater than zero.");
 
             CityId  = cityId;
             StateId  = stateId;

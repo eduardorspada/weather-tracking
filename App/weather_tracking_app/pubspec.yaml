@@ -38,7 +38,8 @@ dependencies:
   geolocator: ^10.0.0
   firebase_messaging: ^14.0.0
   shared_preferences: ^2.2.3
-  http: ^1.2.2
+  http: ^0.13.0
+  google_maps_webservice: ^0.0.19
   permission_handler: ^10.2.0
 
   # The following adds the Cupertino Icons font to your application.
@@ -47,6 +48,8 @@ dependencies:
 
   provider: any
   url_launcher: ^6.3.0
+  image_picker: ^1.1.2
+  google_maps_flutter: ^2.9.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

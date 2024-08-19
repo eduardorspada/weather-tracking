@@ -1,0 +1,140 @@
+Date : 2024-08-18 17:10:38
+Directory : c:\Projetos\weather-tracking
+Total : 72 files,  1625 codes, 27 comments, 151 blanks, all 1803 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| C#       |         49 |      1,072 |         15 |         97 |      1,184 |
+| Dart     |         14 |        485 |         12 |         42 |        539 |
+| XML      |          5 |         58 |          0 |         12 |         70 |
+| C++      |          2 |          7 |          0 |          0 |          7 |
+| Swift    |          1 |          2 |          0 |          0 |          2 |
+| YAML     |          1 |          1 |          0 |          0 |          1 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++----------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                           | files      | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                              |         72 |      1,625 |         27 |        151 |      1,803 |
+| Api                                                                                                            |         54 |      1,130 |         15 |        109 |      1,254 |
+| Api\Ivertion.Domain.Tests                                                                                      |          2 |         29 |          0 |          6 |         35 |
+| Api\iVertion.Application                                                                                       |          6 |        155 |          0 |         10 |        165 |
+| Api\iVertion.Application\DTOs                                                                                  |          6 |        155 |          0 |         10 |        165 |
+| Api\iVertion.Domain                                                                                            |         20 |        385 |          1 |         42 |        428 |
+| Api\iVertion.Domain (Files)                                                                                    |          1 |         -1 |          0 |          0 |         -1 |
+| Api\iVertion.Domain.Testes                                                                                     |          3 |         55 |          0 |          7 |         62 |
+| Api\iVertion.Domain\Entities                                                                                   |          8 |        270 |          0 |         21 |        291 |
+| Api\iVertion.Domain\FiltersDb                                                                                  |          6 |         66 |          1 |         11 |         78 |
+| Api\iVertion.Domain\Interfaces                                                                                 |          5 |         50 |          0 |         10 |         60 |
+| Api\iVertion.Infra.Data                                                                                        |         15 |        405 |          2 |         40 |        447 |
+| Api\iVertion.Infra.Data (Files)                                                                                |          1 |         -1 |          0 |          0 |         -1 |
+| Api\iVertion.Infra.Data\Context                                                                                |          1 |          5 |          2 |          2 |          9 |
+| Api\iVertion.Infra.Data\EntitiesConfiguration                                                                  |          7 |        127 |          0 |         10 |        137 |
+| Api\iVertion.Infra.Data\Repositories                                                                           |          6 |        274 |          0 |         28 |        302 |
+| Api\iVertion.Infra.IoC                                                                                         |          1 |          5 |          2 |          2 |          9 |
+| Api\iVertion.WebApi                                                                                            |          7 |         96 |         10 |          2 |        108 |
+| Api\iVertion.WebApi (Files)                                                                                    |          1 |         20 |          0 |          0 |         20 |
+| Api\iVertion.WebApi\Controllers                                                                                |          5 |         77 |         10 |          2 |         89 |
+| Api\iVertion.WebApi\Models                                                                                     |          1 |         -1 |          0 |          0 |         -1 |
+| App                                                                                                            |         18 |        495 |         12 |         42 |        549 |
+| App\weather_tracking_app                                                                                       |         18 |        495 |         12 |         42 |        549 |
+| App\weather_tracking_app (Files)                                                                               |          1 |          1 |          0 |          0 |          1 |
+| App\weather_tracking_app\lib                                                                                   |         14 |        485 |         12 |         42 |        539 |
+| App\weather_tracking_app\lib (Files)                                                                           |          1 |          6 |          0 |          0 |          6 |
+| App\weather_tracking_app\lib\models                                                                            |          4 |         70 |          0 |          4 |         74 |
+| App\weather_tracking_app\lib\services                                                                          |          2 |         82 |          5 |         12 |         99 |
+| App\weather_tracking_app\lib\viewmodels                                                                        |          2 |         89 |          6 |         16 |        111 |
+| App\weather_tracking_app\lib\views                                                                             |          4 |        193 |          0 |          5 |        198 |
+| App\weather_tracking_app\lib\views\auth                                                                        |          2 |        105 |          0 |          2 |        107 |
+| App\weather_tracking_app\lib\views\home                                                                        |          1 |          2 |          0 |          0 |          2 |
+| App\weather_tracking_app\lib\views\person                                                                      |          1 |         86 |          0 |          3 |         89 |
+| App\weather_tracking_app\lib\widgets                                                                           |          1 |         45 |          1 |          5 |         51 |
+| App\weather_tracking_app\linux                                                                                 |          1 |          4 |          0 |          0 |          4 |
+| App\weather_tracking_app\linux\flutter                                                                         |          1 |          4 |          0 |          0 |          4 |
+| App\weather_tracking_app\macos                                                                                 |          1 |          2 |          0 |          0 |          2 |
+| App\weather_tracking_app\macos\Flutter                                                                         |          1 |          2 |          0 |          0 |          2 |
+| App\weather_tracking_app\windows                                                                               |          1 |          3 |          0 |          0 |          3 |
+| App\weather_tracking_app\windows\flutter                                                                       |          1 |          3 |          0 |          0 |          3 |
++----------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++----------------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                                                                                       | language | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| c:\Projetos\weather-tracking\Api\Ivertion.Domain.Tests\Ivertion.Domain.Tests.csproj                            | XML      |         18 |          0 |          6 |         24 |
+| c:\Projetos\weather-tracking\Api\Ivertion.Domain.Tests\UnitTest1.cs                                            | C#       |         11 |          0 |          0 |         11 |
+| c:\Projetos\weather-tracking\Api\iVertion.Application\DTOs\DeviceDTO.cs                                        | C#       |         20 |          0 |          2 |         22 |
+| c:\Projetos\weather-tracking\Api\iVertion.Application\DTOs\PersonDTO.cs                                        | C#       |         -2 |          0 |          0 |         -2 |
+| c:\Projetos\weather-tracking\Api\iVertion.Application\DTOs\WeatherAlertDTO.cs                                  | C#       |         23 |          0 |          2 |         25 |
+| c:\Projetos\weather-tracking\Api\iVertion.Application\DTOs\WeatherConditionDTO.cs                              | C#       |         53 |          0 |          2 |         55 |
+| c:\Projetos\weather-tracking\Api\iVertion.Application\DTOs\WeatherForecastDTO.cs                               | C#       |         35 |          0 |          2 |         37 |
+| c:\Projetos\weather-tracking\Api\iVertion.Application\DTOs\WeatherNotificationDTO.cs                           | C#       |         26 |          0 |          2 |         28 |
+| c:\Projetos\weather-tracking\Api\iVertion.Domain.Testes\PersonUnitTest1.cs                                     | C#       |         29 |          0 |          1 |         30 |
+| c:\Projetos\weather-tracking\Api\iVertion.Domain.Testes\Usings.cs                                              | C#       |          4 |          0 |          0 |          4 |
+| c:\Projetos\weather-tracking\Api\iVertion.Domain.Testes\iVertion.Domain.Testes.csproj                          | XML      |         22 |          0 |          6 |         28 |
+| c:\Projetos\weather-tracking\Api\iVertion.Domain\Entities\Address.cs                                           | C#       |          0 |          0 |         -1 |         -1 |
+| c:\Projetos\weather-tracking\Api\iVertion.Domain\Entities\City.cs                                              | C#       |          3 |          0 |          1 |          4 |
+| c:\Projetos\weather-tracking\Api\iVertion.Domain\Entities\Device.cs                                            | C#       |         67 |          0 |          9 |         76 |
+| c:\Projetos\weather-tracking\Api\iVertion.Domain\Entities\Person.cs                                            | C#       |          1 |          0 |          0 |          1 |
+| c:\Projetos\weather-tracking\Api\iVertion.Domain\Entities\WeatherAlert.cs                                      | C#       |         35 |          0 |          3 |         38 |
+| c:\Projetos\weather-tracking\Api\iVertion.Domain\Entities\WeatherCondition.cs                                  | C#       |         51 |          0 |          3 |         54 |
+| c:\Projetos\weather-tracking\Api\iVertion.Domain\Entities\WeatherForecast.cs                                   | C#       |         30 |          0 |          1 |         31 |
+| c:\Projetos\weather-tracking\Api\iVertion.Domain\Entities\WeatherNotification.cs                               | C#       |         83 |          0 |          5 |         88 |
+| c:\Projetos\weather-tracking\Api\iVertion.Domain\FiltersDb\DeviceFilterDb.cs                                   | C#       |         11 |          0 |          2 |         13 |
+| c:\Projetos\weather-tracking\Api\iVertion.Domain\FiltersDb\PersonFilterDb.cs                                   | C#       |          0 |          1 |          0 |          1 |
+| c:\Projetos\weather-tracking\Api\iVertion.Domain\FiltersDb\WeatherAlertFilterDb.cs                             | C#       |         13 |          0 |          2 |         15 |
+| c:\Projetos\weather-tracking\Api\iVertion.Domain\FiltersDb\WeatherConditionFilterDb.cs                         | C#       |         13 |          0 |          2 |         15 |
+| c:\Projetos\weather-tracking\Api\iVertion.Domain\FiltersDb\WeatherForecastFilterDb.cs                          | C#       |         13 |          0 |          2 |         15 |
+| c:\Projetos\weather-tracking\Api\iVertion.Domain\FiltersDb\WeatherNotificationFilterDb.cs                      | C#       |         16 |          0 |          3 |         19 |
+| c:\Projetos\weather-tracking\Api\iVertion.Domain\Interfaces\IDeviceRepository.cs                               | C#       |         10 |          0 |          2 |         12 |
+| c:\Projetos\weather-tracking\Api\iVertion.Domain\Interfaces\IWeatherAlertRepository.cs                         | C#       |         10 |          0 |          2 |         12 |
+| c:\Projetos\weather-tracking\Api\iVertion.Domain\Interfaces\IWeatherConditionRepository.cs                     | C#       |         10 |          0 |          2 |         12 |
+| c:\Projetos\weather-tracking\Api\iVertion.Domain\Interfaces\IWeatherForecastRepository.cs                      | C#       |         10 |          0 |          2 |         12 |
+| c:\Projetos\weather-tracking\Api\iVertion.Domain\Interfaces\IWeatherNotificationRepository.cs                  | C#       |         10 |          0 |          2 |         12 |
+| c:\Projetos\weather-tracking\Api\iVertion.Domain\iVertion.Domain.csproj                                        | XML      |         -1 |          0 |          0 |         -1 |
+| c:\Projetos\weather-tracking\Api\iVertion.Infra.Data\Context\ApplicationDbContext.cs                           | C#       |          5 |          2 |          2 |          9 |
+| c:\Projetos\weather-tracking\Api\iVertion.Infra.Data\EntitiesConfiguration\CityConfiguration.cs                | C#       |         12 |          0 |          0 |         12 |
+| c:\Projetos\weather-tracking\Api\iVertion.Infra.Data\EntitiesConfiguration\DeviceConfiguration.cs              | C#       |         24 |          0 |          3 |         27 |
+| c:\Projetos\weather-tracking\Api\iVertion.Infra.Data\EntitiesConfiguration\PersonConfiguration.cs              | C#       |          5 |          0 |         -1 |          4 |
+| c:\Projetos\weather-tracking\Api\iVertion.Infra.Data\EntitiesConfiguration\WeatherAlertConfiguration.cs        | C#       |         23 |          0 |          2 |         25 |
+| c:\Projetos\weather-tracking\Api\iVertion.Infra.Data\EntitiesConfiguration\WeatherConditionConfiguration.cs    | C#       |         19 |          0 |          2 |         21 |
+| c:\Projetos\weather-tracking\Api\iVertion.Infra.Data\EntitiesConfiguration\WeatherForecastConfiguration.cs     | C#       |         19 |          0 |          2 |         21 |
+| c:\Projetos\weather-tracking\Api\iVertion.Infra.Data\EntitiesConfiguration\WeatherNotificationConfiguration.cs | C#       |         25 |          0 |          2 |         27 |
+| c:\Projetos\weather-tracking\Api\iVertion.Infra.Data\Repositories\DeviceRepository.cs                          | C#       |         36 |          0 |          6 |         42 |
+| c:\Projetos\weather-tracking\Api\iVertion.Infra.Data\Repositories\PersonRepository.cs                          | C#       |          2 |          0 |          0 |          2 |
+| c:\Projetos\weather-tracking\Api\iVertion.Infra.Data\Repositories\WeatherAlertRepository.cs                    | C#       |         54 |          0 |          5 |         59 |
+| c:\Projetos\weather-tracking\Api\iVertion.Infra.Data\Repositories\WeatherConditionRepository.cs                | C#       |         54 |          0 |          5 |         59 |
+| c:\Projetos\weather-tracking\Api\iVertion.Infra.Data\Repositories\WeatherForecastRepository.cs                 | C#       |         54 |          0 |          6 |         60 |
+| c:\Projetos\weather-tracking\Api\iVertion.Infra.Data\Repositories\WeatherNotificationRepository.cs             | C#       |         74 |          0 |          6 |         80 |
+| c:\Projetos\weather-tracking\Api\iVertion.Infra.Data\iVertion.Infra.Data.csproj                                | XML      |         -1 |          0 |          0 |         -1 |
+| c:\Projetos\weather-tracking\Api\iVertion.Infra.IoC\DependencyInjectionAPI.cs                                  | C#       |          5 |          2 |          2 |          9 |
+| c:\Projetos\weather-tracking\Api\iVertion.WebApi\Controllers\AccountController.cs                              | C#       |         -1 |         -3 |         -2 |         -6 |
+| c:\Projetos\weather-tracking\Api\iVertion.WebApi\Controllers\AddressController.cs                              | C#       |          9 |          2 |          0 |         11 |
+| c:\Projetos\weather-tracking\Api\iVertion.WebApi\Controllers\PersonController.cs                               | C#       |         32 |          5 |          5 |         42 |
+| c:\Projetos\weather-tracking\Api\iVertion.WebApi\Controllers\TokenController.cs                                | C#       |          4 |         -3 |         -2 |         -1 |
+| c:\Projetos\weather-tracking\Api\iVertion.WebApi\Controllers\UserController.cs                                 | C#       |         33 |          9 |          1 |         43 |
+| c:\Projetos\weather-tracking\Api\iVertion.WebApi\Models\LoginModel.cs                                          | C#       |         -1 |          0 |          0 |         -1 |
+| c:\Projetos\weather-tracking\Api\iVertion.WebApi\iVertion.WebApi.xml                                           | XML      |         20 |          0 |          0 |         20 |
+| c:\Projetos\weather-tracking\App\weather_tracking_app\lib\app_module.dart                                      | Dart     |          6 |          0 |          0 |          6 |
+| c:\Projetos\weather-tracking\App\weather_tracking_app\lib\models\person_model.dart                             | Dart     |         28 |          0 |          4 |         32 |
+| c:\Projetos\weather-tracking\App\weather_tracking_app\lib\models\user.dart                                     | Dart     |        -17 |          0 |         -3 |        -20 |
+| c:\Projetos\weather-tracking\App\weather_tracking_app\lib\models\user_model.dart                               | Dart     |         44 |          0 |          3 |         47 |
+| c:\Projetos\weather-tracking\App\weather_tracking_app\lib\models\weather_model.dart                            | Dart     |         15 |          0 |          0 |         15 |
+| c:\Projetos\weather-tracking\App\weather_tracking_app\lib\services\network_service.dart                        | Dart     |         78 |          5 |         13 |         96 |
+| c:\Projetos\weather-tracking\App\weather_tracking_app\lib\services\weather_service.dart                        | Dart     |          4 |          0 |         -1 |          3 |
+| c:\Projetos\weather-tracking\App\weather_tracking_app\lib\viewmodels\auth_viewmodel.dart                       | Dart     |         31 |          5 |          9 |         45 |
+| c:\Projetos\weather-tracking\App\weather_tracking_app\lib\viewmodels\person_viewmodel.dart                     | Dart     |         58 |          1 |          7 |         66 |
+| c:\Projetos\weather-tracking\App\weather_tracking_app\lib\views\auth\login_page.dart                           | Dart     |         -2 |          0 |          0 |         -2 |
+| c:\Projetos\weather-tracking\App\weather_tracking_app\lib\views\auth\register_page.dart                        | Dart     |        107 |          0 |          2 |        109 |
+| c:\Projetos\weather-tracking\App\weather_tracking_app\lib\views\home\home_page.dart                            | Dart     |          2 |          0 |          0 |          2 |
+| c:\Projetos\weather-tracking\App\weather_tracking_app\lib\views\person\register_person_page.dart               | Dart     |         86 |          0 |          3 |         89 |
+| c:\Projetos\weather-tracking\App\weather_tracking_app\lib\widgets\profile_widget.dart                          | Dart     |         45 |          1 |          5 |         51 |
+| c:\Projetos\weather-tracking\App\weather_tracking_app\linux\flutter\generated_plugin_registrant.cc             | C++      |          4 |          0 |          0 |          4 |
+| c:\Projetos\weather-tracking\App\weather_tracking_app\macos\Flutter\GeneratedPluginRegistrant.swift            | Swift    |          2 |          0 |          0 |          2 |
+| c:\Projetos\weather-tracking\App\weather_tracking_app\pubspec.yaml                                             | YAML     |          1 |          0 |          0 |          1 |
+| c:\Projetos\weather-tracking\App\weather_tracking_app\windows\flutter\generated_plugin_registrant.cc           | C++      |          3 |          0 |          0 |          3 |
+| Total                                                                                                          |          |      1,625 |         27 |        151 |      1,803 |
++----------------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+

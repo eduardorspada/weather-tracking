@@ -7,11 +7,48 @@ import '../services/network_service.dart';
 class AuthViewModel extends ChangeNotifier {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController = TextEditingController();
   final NetworkService _networkService = NetworkService();
   final AuthService _authService = AuthService();
 
   bool isLoading = false;
   String? errorMessage;
+
+    bool _isSignUpMode = false;
+
+  bool get isSignUpMode => _isSignUpMode;
+
+  // Método para alternar entre modos de login e inscrição
+  void toggleSignUpMode() {
+    _isSignUpMode = !_isSignUpMode;
+    notifyListeners();
+  }
+
+
+    // Método de Cadastro (Sign Up)
+  Future<void> signUp(BuildContext context) async {
+    isLoading = true;
+    errorMessage = null;
+    notifyListeners();
+
+    try {
+      // Realiza o cadastro
+      await _networkService.signupUser(
+        emailController.text,
+        passwordController.text,
+        confirmPasswordController.text
+      );
+
+      // Se o cadastro for bem-sucedido, faz login automaticamente
+      await login(context);
+    } catch (e) {
+      print('Erro de cadastro: ${e.toString()}');
+      errorMessage = 'Sign Up failed. Please try again.';
+    } finally {
+      isLoading = false;
+      notifyListeners();
+    }
+  }
 
   Future<void> checkLoginStatus(BuildContext context) async {
     final String? token = await _authService.getToken();
@@ -30,7 +67,15 @@ class AuthViewModel extends ChangeNotifier {
         emailController.text,
         passwordController.text,
       );
-      Modular.to.pushReplacementNamed('/home');
+      
+      // Verificar userProfileId após login
+      final userInfo = await _networkService.getMyUserInformation();
+
+      if (userInfo['personId'] == 0) {
+        Modular.to.pushReplacementNamed('/register_person');
+      } else {
+        Modular.to.pushReplacementNamed('/home');
+      }
     } catch (e) {
       print('Erro de login: ${e.toString()}');
       errorMessage = 'Login failed. Please check your credentials.';

@@ -18,6 +18,15 @@ namespace iVertion.Application.Mappings
             CreateMap<Person, PersonDTO>().ReverseMap();
             CreateMap<PersonAddress, PersonAddressDTO>().ReverseMap();
 
+            // Device
+            CreateMap<Device, DeviceDTO>().ReverseMap();
+
+            // Weather
+            CreateMap<WeatherCondition, WeatherConditionDTO>().ReverseMap();
+            CreateMap<WeatherForecast, WeatherForecastDTO>().ReverseMap();
+            CreateMap<WeatherAlert, WeatherAlertDTO>().ReverseMap();
+            CreateMap<WeatherNotification, WeatherNotificationDTO>().ReverseMap();
+
             // Address
             CreateMap<Address, AddressDTO>().ReverseMap();
             CreateMap<City, CityDTO>().ReverseMap();

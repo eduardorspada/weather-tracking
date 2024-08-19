@@ -99,7 +99,12 @@ namespace iVertion.WebApi.Controllers
                 
                 if (user.IsEnabled)
                 {
-                    return await GenerateTokenAsync(userInfo);
+                    try{
+                        return await GenerateTokenAsync(userInfo);
+                    } catch (Exception e) {
+                        Console.WriteLine($"Erro: {e}");
+                        return BadRequest($"Erro: {e}");
+                    }
                 }
                 else
                 {
@@ -179,29 +184,23 @@ namespace iVertion.WebApi.Controllers
             var userProfile = await _userProfileService.GetUserProfileByIdAsync(user.UserProfileId);
             var newRoles = await GetAllUserRolesAsync(user.UserProfileId, user.Id);
             var oldRoles = await _userService.GetUserRolesAsync(userInfo.Email);
-            var person = await _personService.GetPersonByIdAsync(user.PersonId);
 
             await UpdateUserRolesAsync(oldRoles, newRoles, user);
         
             var roles = await _userService.GetUserRolesAsync(userInfo.Email);
 
 
+            
             var claims = new List<Claim>
             {
                 new Claim("email", userInfo.Email),
                 new Claim("UId", user.Id),
-                new Claim("Name", person.Data.FullName),
-
-                // new Claim("Data", roles.ToString()),
-                // new Claim(ClaimTypes.Role, roles),
-
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
-            
+            Console.WriteLine("Passei aqui!");
 
             foreach (var role in roles) 
             {
-                // claims.Add(new Claim(ClaimTypes.Role, role.Name));
                 claims.Add(new Claim(ClaimTypes.Role, role));
             }
             

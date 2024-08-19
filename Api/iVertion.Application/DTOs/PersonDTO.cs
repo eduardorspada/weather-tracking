@@ -21,8 +21,6 @@ namespace iVertion.Application.DTOs
         [Required(ErrorMessage = "Birthday is required.")]
         [DisplayName("Birthday")]
         public DateTime Birthday { get; set; }
-        [MinLength(5)]
-        [MaxLength(255)]
         [DisplayName("Profile Picture")]
         public string? ProfilePicture { get; set; }
     }

@@ -9,16 +9,44 @@
             
             </summary>
         </member>
+        <member name="T:iVertion.WebApi.Controllers.DeviceController">
+            <summary>
+            User device controller.
+            </summary>
+        </member>
+        <member name="M:iVertion.WebApi.Controllers.DeviceController.#ctor(iVertion.Application.Interfaces.IDeviceService,iVertion.Domain.Account.IUserInterface{iVertion.Infra.Data.Identity.ApplicationUser})">
+            <summary>
+            Users device builder.
+            </summary>
+            <param name="deviceService"></param>
+            <param name="userService"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:iVertion.WebApi.Controllers.DeviceController.GetMyDevicesAsync(iVertion.Domain.FiltersDb.DeviceFilterDb)">
+            <summary>
+            Returns all devices of the logged in user.
+            </summary>
+            <param name="deviceFilterDb"></param>
+            <returns></returns>
+        </member>
+        <member name="M:iVertion.WebApi.Controllers.DeviceController.AddMyDevice(iVertion.Application.DTOs.DeviceDTO)">
+            <summary>
+            Creates a device for the logged in user.
+            </summary>
+            <param name="deviceDto"></param>
+            <returns></returns>
+        </member>
         <member name="T:iVertion.WebApi.Controllers.PersonController">
             <summary>
             
             </summary>
         </member>
-        <member name="M:iVertion.WebApi.Controllers.PersonController.#ctor(iVertion.Application.Interfaces.IPersonService)">
+        <member name="M:iVertion.WebApi.Controllers.PersonController.#ctor(iVertion.Application.Interfaces.IPersonService,iVertion.Domain.Account.IUserInterface{iVertion.Infra.Data.Identity.ApplicationUser})">
             <summary>
             Retuns persons information
             </summary>
             <param name="personService"></param>
+            <param name="userService"></param>
             <exception cref="T:System.ArgumentNullException"></exception>
         </member>
         <member name="M:iVertion.WebApi.Controllers.PersonController.GetPersonsAsync(iVertion.Domain.FiltersDb.PersonFilterDb)">
@@ -33,6 +61,12 @@
             Retuns person information by id
             </summary>
             <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:iVertion.WebApi.Controllers.PersonController.GetMyPersonInformationAsync">
+            <summary>
+            Retuns person information by id
+            </summary>
             <returns></returns>
         </member>
         <member name="M:iVertion.WebApi.Controllers.PersonController.AddPersonAsync(iVertion.Application.DTOs.PersonDTO)">
@@ -104,7 +138,20 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="M:iVertion.WebApi.Controllers.UserController.GetUserByIdAsync">
+            <summary>
+            Returns a user by id.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:iVertion.WebApi.Controllers.UserController.CreateUser(iVertion.WebApi.Models.RegisterModel)">
+            <summary>
+            Creates a new user from the "userInfo" properties.
+            </summary>
+            <param name="userInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:iVertion.WebApi.Controllers.UserController.Signup(iVertion.WebApi.Models.RegisterModel)">
             <summary>
             Creates a new user from the "userInfo" properties.
             </summary>
@@ -262,6 +309,114 @@
             Changes the authenticated user's username from the "myUserNameModel" properties.
             </summary>
             <param name="myUserNameModel"></param>
+            <returns></returns>
+        </member>
+        <member name="T:iVertion.WebApi.Controllers.WeatherController">
+            <summary>
+            Weather controller.
+            </summary>
+        </member>
+        <member name="M:iVertion.WebApi.Controllers.WeatherController.#ctor(iVertion.Application.Interfaces.IWeatherConditionService,iVertion.Application.Interfaces.IWeatherForecastService,iVertion.Application.Interfaces.IWeatherAlertService,iVertion.Application.Interfaces.IWeatherNotificationService,iVertion.Domain.Account.IUserInterface{iVertion.Infra.Data.Identity.ApplicationUser},iVertion.Application.Interfaces.IDeviceService)">
+            <summary>
+            Weather builder.
+            </summary>
+            <param name="weatherConditionService"></param>
+            <param name="weatherForecastService"></param>
+            <param name="weatherAlertService"></param>
+            <param name="weatherNotificationService"></param>
+            <param name="userSevice"></param>
+            <param name="deviceService"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:iVertion.WebApi.Controllers.WeatherController.GetWeatherConditionsAsync(iVertion.Domain.FiltersDb.WeatherConditionFilterDb)">
+            <summary>
+            Returns the weather condition.
+            </summary>
+            <param name="weatherConditionFilterDb"></param>
+            <returns></returns>
+        </member>
+        <member name="M:iVertion.WebApi.Controllers.WeatherController.AddWeatherConditionsAsync(iVertion.Application.DTOs.WeatherConditionDTO)">
+            <summary>
+            Adds a weather condition.
+            </summary>
+            <param name="weatherConditionDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:iVertion.WebApi.Controllers.WeatherController.UpdateWeatherConditionsAsync(iVertion.Application.DTOs.WeatherConditionDTO)">
+            <summary>
+            Updates a weather condition.
+            </summary>
+            <param name="weatherConditionDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:iVertion.WebApi.Controllers.WeatherController.GetWeatherForecastsAsync(iVertion.Domain.FiltersDb.WeatherForecastFilterDb)">
+            <summary>
+            Returns the weather Forecast.
+            </summary>
+            <param name="weatherForecastFilterDb"></param>
+            <returns></returns>
+        </member>
+        <member name="M:iVertion.WebApi.Controllers.WeatherController.AddWeatherForecastsAsync(iVertion.Application.DTOs.WeatherForecastDTO)">
+            <summary>
+            Adds a weather Forecast.
+            </summary>
+            <param name="weatherForecastDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:iVertion.WebApi.Controllers.WeatherController.UpdateWeatherForecastsAsync(iVertion.Application.DTOs.WeatherForecastDTO)">
+            <summary>
+            Updates a weather Forecast.
+            </summary>
+            <param name="weatherForecastDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:iVertion.WebApi.Controllers.WeatherController.GetWeatherAlertsAsync(iVertion.Domain.FiltersDb.WeatherAlertFilterDb)">
+            <summary>
+            Returns the weather Alert.
+            </summary>
+            <param name="weatherAlertFilterDb"></param>
+            <returns></returns>
+        </member>
+        <member name="M:iVertion.WebApi.Controllers.WeatherController.AddWeatherAlertsAsync(iVertion.Application.DTOs.WeatherAlertDTO)">
+            <summary>
+            Adds a weather Alert.
+            </summary>
+            <param name="weatherAlertDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:iVertion.WebApi.Controllers.WeatherController.UpdateWeatherAlertsAsync(iVertion.Application.DTOs.WeatherAlertDTO)">
+            <summary>
+            Updates a weather Alert.
+            </summary>
+            <param name="weatherAlertDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:iVertion.WebApi.Controllers.WeatherController.GetWeatherNotificationsAsync(iVertion.Domain.FiltersDb.WeatherNotificationFilterDb)">
+            <summary>
+            Returns the weather Notification.
+            </summary>
+            <param name="weatherNotificationFilterDb"></param>
+            <returns></returns>
+        </member>
+        <member name="M:iVertion.WebApi.Controllers.WeatherController.AddWeatherNotificationsAsync(iVertion.Application.DTOs.WeatherNotificationDTO)">
+            <summary>
+            Adds a weather Notification.
+            </summary>
+            <param name="weatherNotificationDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:iVertion.WebApi.Controllers.WeatherController.UpdateWeatherNotificationsAsync(iVertion.Application.DTOs.WeatherNotificationDTO)">
+            <summary>
+            Updates a weather Notification.
+            </summary>
+            <param name="weatherNotificationDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:iVertion.WebApi.Controllers.WeatherController.UpdateMyWeatherNotificationsAsync(iVertion.Application.DTOs.WeatherNotificationDTO)">
+            <summary>
+            Updates the logged user's time notification.
+            </summary>
+            <param name="weatherNotificationDto"></param>
             <returns></returns>
         </member>
         <member name="T:iVertion.WebApi.Models.AdditionalUserRoleModel">

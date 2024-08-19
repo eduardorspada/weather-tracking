@@ -102,5 +102,16 @@ namespace iVertion.WebApi.Controllers
                 return Ok(result);
             return BadRequest(result);
         }
+        [HttpGet("PersonAddress")]
+        [Authorize]
+        public async Task<ActionResult> GetPersonAddressesAsync([FromQuery]  PersonAddressFilterDb personAddressFilterDb)
+        {
+            var result = await _personAddressService.GetPersonAddressesAsync(personAddressFilterDb);
+            if (result.IsSuccess)
+                return Ok(result);
+            return BadRequest(result);
+        }
+        //[HttpPost]
+        //public async Task<ActionResult> AddPersonAddressAsync()
     }
 }

@@ -24,7 +24,7 @@ namespace iVertion.Domain.Entities
                              bool active)
         {
             DomainExceptionValidation.When(id < 0,
-                                           "Invalid Id, must be up to zero.");
+                                           "Invalid Id, must greater than zero.");
             ValidationDomain(personId,
                              phoneNumberId);
             Id      = id;
@@ -43,9 +43,9 @@ namespace iVertion.Domain.Entities
                                       int phoneNumberId)
         {
             DomainExceptionValidation.When(personId <= 0,
-                                           "Invalid Person Id, must be up to zero.");
+                                           "Invalid Person Id, must greater than zero.");
             DomainExceptionValidation.When(phoneNumberId <= 0,
-                                           "Invalid PhoneNumber Id, must be up to zero.");
+                                           "Invalid PhoneNumber Id, must greater than zero.");
             PersonId  = personId;
             PhoneNumberId   = phoneNumberId;
         }

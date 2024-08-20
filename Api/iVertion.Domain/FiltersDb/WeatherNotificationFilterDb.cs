@@ -5,7 +5,7 @@ namespace iVertion.Domain.FiltersDb
     public class WeatherNotificationFilterDb : PagedBaseRequest
     {
         public bool IsRead { get; set; }
-        public int RetryCount { get; set; }
+        public int MaxRetryCount { get; set; }
         public DateTime? IntialSentAt { get; set; }
         public DateTime? FinalSentAt { get; set; }
         public DateTime? IntialNextRetryAt { get; set; }

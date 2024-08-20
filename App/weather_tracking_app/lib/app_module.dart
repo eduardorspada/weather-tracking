@@ -8,6 +8,8 @@ import 'views/auth/register_page.dart';
 import 'views/person/register_person_page.dart';
 import 'views/home/home_page.dart';
 import 'views/auth/login_page.dart';
+import 'services/notification_service.dart';
+import 'viewmodels/notification_viewmodel.dart';
 
 class AppModule extends Module {
   @override
@@ -17,7 +19,8 @@ class AppModule extends Module {
     Bind.singleton((i) => GooglePlacesService("AIzaSyAhsOqXhmitfN_w1NTm7CyOlPvNkEX80bE")),
     Bind.singleton((i) => PersonViewModel()),
     Bind.singleton((i) => WeatherService()),
-    // Outros binds...
+    Bind.singleton((i) => NotificationService()),
+    Bind.singleton((i) => NotificationViewModel(i<NotificationService>())),
   ];
 
   @override
@@ -26,7 +29,5 @@ class AppModule extends Module {
     ChildRoute('/register', child: (_, __) => const RegisterPage()),
     ChildRoute('/register_person', child: (_, __) => const RegisterPersonPage()),
     ChildRoute('/home', child: (_, __) => const HomePage()),
-
-    // Outras rotas...
   ];
 }

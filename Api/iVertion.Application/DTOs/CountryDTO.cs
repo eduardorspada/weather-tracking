@@ -15,8 +15,5 @@ namespace iVertion.Application.DTOs
         [MaxLength(5)]
         [DisplayName("Acronym")]
         public string? Acronym { get; set; }
-        [Required(ErrorMessage = "Code is required.")]
-        [DisplayName("Code")]
-        public int Code { get; set; }
     }
 }

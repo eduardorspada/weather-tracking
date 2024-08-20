@@ -1,3 +1,4 @@
+using Hangfire;
 using iVertion.Application.Interfaces;
 using iVertion.Application.Mappings;
 using iVertion.Application.Services;
@@ -16,45 +17,12 @@ namespace iVertion.Infra.IoC
     public static class DependencyInjectionAPI
     {
         public static IServiceCollection AddInfrastructureAPI(this IServiceCollection services,
-                                                              IConfiguration configuration)
+                                                              IConfiguration configuration,
+                                                              string connectionString)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                 {
-                    // ======================= MySql ==================================
-                    // var host = configuration["DBHOST"] ?? "localhost";
-                    // var port = configuration["DBPORT"] ?? "3306";
-                    // var user = configuration["DBUSER"] ?? "root";
-                    // var database = configuration["DBNAME"] ?? "ivertion";
-                    // var password = configuration["DBPASSWORD"] ?? "";
- 
-                    // string connectionString = $"Server={host};Port={port};Database={database};User ID={user}; Password={password};";
-                    // options.UseMySql(connectionString,
-                    //                 ServerVersion.AutoDetect(connectionString));
-                    // ================================================================
-
-                    // ===================== SQL Server Azure =========================
-                    var host = configuration["DBHOST"] ?? "localhost";
-                    var port = configuration["DBPORT"] ?? "1433";
-                    var user = configuration["DBUSER"] ?? "sa";
-                    var database = configuration["DBNAME"] ?? "ivertion";
-                    var password = configuration["DBPASSWORD"] ?? "";
-                    var persistSecurityInfo = configuration["PERSISTSECURITYINFO"] ?? "false";
-                    var multipleActiveResultSets = configuration["MULTIPLEACTIVERESULTSETS"] ?? "false";
-                    var encrypt = configuration["ENCRYPT"] ?? "false";
-                    var trustServerCertificate = configuration["TRUSTSERVERCERTIFICATE"] ?? "false";
-                    var connectionTimeout = configuration["CONECTIONTIMEOUT"] ?? "30";
-                    
-                    //var driver = "Driver={ODBC Driver 18 for SQL Server}";
-
-                    
-                    // Local
-                    string connectionString = $"Server={host};Database={database};Integrated Security=True;UID={user};PWD={password};TrustServerCertificate=true";
-                    // Local to Azure ODBC
-                    //string connectionString = $"Server=tcp:{host},{port};Database={database};Uid={user};Pwd={password};Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;";
-                    // ADO.NET 
-                    // string connectionString = $"Server={host},{port};Initial Catalog={database};Persist Security Info={persistSecurityInfo};User ID={user};Password={password};MultipleActiveResultSets={multipleActiveResultSets};Encrypt={encrypt};TrustServerCertificate={trustServerCertificate};Connection Timeout={connectionTimeout};";
                     options.UseSqlServer(connectionString, b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName));
-                    // ================================================================
 
                 }
             );
@@ -129,6 +97,13 @@ namespace iVertion.Infra.IoC
             services.AddScoped<IWeatherAlertService, WeatherAlertService>();
             services.AddScoped<IWeatherNotificationService, WeatherNotificationService>();
 
+            // HangFire
+
+            services.AddHangfire(config => config
+                .SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
+                .UseSqlServerStorage(connectionString));
+
+            services.AddHangfireServer();
 
 
             // AutoMapper for DTOs

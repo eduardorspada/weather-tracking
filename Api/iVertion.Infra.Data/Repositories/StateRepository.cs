@@ -25,10 +25,6 @@ namespace iVertion.Infra.Data.Repositories
             {
                 states = states.Where(c => c.Acronym.Contains(request.Acronym));
             }
-            if (request.Code != null)
-            {
-                states = states.Where(a => a.Code == request.Code);
-            }
 
             return await PagedBaseResponseHelper
                             .GetResponseAsync<PagedBaseResponse<State>, State>(states, request);

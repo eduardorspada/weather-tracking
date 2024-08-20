@@ -316,7 +316,7 @@
             Weather controller.
             </summary>
         </member>
-        <member name="M:iVertion.WebApi.Controllers.WeatherController.#ctor(iVertion.Application.Interfaces.IWeatherConditionService,iVertion.Application.Interfaces.IWeatherForecastService,iVertion.Application.Interfaces.IWeatherAlertService,iVertion.Application.Interfaces.IWeatherNotificationService,iVertion.Domain.Account.IUserInterface{iVertion.Infra.Data.Identity.ApplicationUser},iVertion.Application.Interfaces.IDeviceService)">
+        <member name="M:iVertion.WebApi.Controllers.WeatherController.#ctor(iVertion.Application.Interfaces.IWeatherConditionService,iVertion.Application.Interfaces.IWeatherForecastService,iVertion.Application.Interfaces.IWeatherAlertService,iVertion.Application.Interfaces.IWeatherNotificationService,iVertion.Domain.Account.IUserInterface{iVertion.Infra.Data.Identity.ApplicationUser},iVertion.Application.Interfaces.IDeviceService,iVertion.Application.Interfaces.IPersonService,iVertion.Application.Interfaces.IPersonAddressService,iVertion.Application.Interfaces.IAddressService)">
             <summary>
             Weather builder.
             </summary>
@@ -432,6 +432,36 @@
         <member name="P:iVertion.WebApi.Models.AdditionalUserRoleModel.UserName">
             <summary>
             An existing username on Identity.
+            </summary>
+        </member>
+        <member name="T:iVertion.WebApi.Models.AddressRegister">
+            <summary>
+            Address register model
+            </summary>
+        </member>
+        <member name="P:iVertion.WebApi.Models.AddressRegister.CityName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:iVertion.WebApi.Models.AddressRegister.State">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:iVertion.WebApi.Models.AddressRegister.StateFull">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:iVertion.WebApi.Models.AddressRegister.Country">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:iVertion.WebApi.Models.AddressRegister.CountryFull">
+            <summary>
+            
             </summary>
         </member>
         <member name="T:iVertion.WebApi.Models.EditTemporaryUserRoleModel">

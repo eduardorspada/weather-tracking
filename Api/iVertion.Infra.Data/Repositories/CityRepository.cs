@@ -20,9 +20,6 @@ namespace iVertion.Infra.Data.Repositories
             if (!String.IsNullOrEmpty(request.Name)) {
                 cities = cities.Where(c => c.Name.Contains(request.Name));
             }
-            if (request.Code != null) {
-                cities = cities.Where(a => a.Code == request.Code);
-            }
 
             return await PagedBaseResponseHelper
                             .GetResponseAsync<PagedBaseResponse<City>, City>(cities, request);

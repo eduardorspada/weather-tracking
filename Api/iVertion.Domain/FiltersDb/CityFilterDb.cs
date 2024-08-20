@@ -6,7 +6,6 @@ namespace iVertion.Domain.FiltersDb
     public class CityFilterDb : PagedBaseRequest
     {
         public string? Name { get; set; }
-        public int? Code { get; set; }
         public bool? Active { get; set; }
     }
 }

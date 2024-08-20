@@ -26,12 +26,14 @@ namespace iVertion.Infra.Data.Repositories
 
             if (request.DeviceName != null)
                 devices = devices.Where(d => d.DeviceName.Contains(request.DeviceName));
-            if (request.AcceptNotifications != null)
+            if (request.AcceptNotifications)
                 devices = devices.Where(d => d.AcceptNotifications ==  request.AcceptNotifications);
             if (request.PersonId > 0)
                 devices = devices.Where(d => d.PersonId == request.PersonId);
-            if (request.Active != null)
+            if (request.Active)
                 devices = devices.Where(d => d.Active == request.Active);
+            if (request.Token != null)
+                devices = devices.Where(d => d.Token == request.Token);
 
             return await PagedBaseResponseHelper
                             .GetResponseAsync<PagedBaseResponse<Device>, Device>(devices, request);

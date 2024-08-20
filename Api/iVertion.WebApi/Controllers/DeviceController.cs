@@ -60,22 +60,33 @@ namespace iVertion.WebApi.Controllers
         {
             try
             {
-                var userId = User.FindFirst("UID").Value;
-                var user = await _userService.GetUserByIdAsync(userId);
-                var personId = user.PersonId;
-                deviceDto.PersonId = personId;
-                var dateNow = DateTime.UtcNow;
-                deviceDto.CreatedAt = dateNow;
-                deviceDto.UpdatedAt = dateNow;
-                deviceDto.UserId = userId;
+                var deviceFilterDb = new DeviceFilterDb(){
+                    Token = deviceDto.Token,
+                    AcceptNotifications = true,
+                    Active = true
+                };
+                var devices = await _deviceService.GetDevicesAsync(deviceFilterDb);
+                if(devices.Data.TotalRegisters == 0){
+                    var userId = User.FindFirst("UID").Value;
+                    var user = await _userService.GetUserByIdAsync(userId);
+                    var personId = user.PersonId;
+                    deviceDto.PersonId = personId;
+                    var dateNow = DateTime.UtcNow;
+                    deviceDto.CreatedAt = dateNow;
+                    deviceDto.UpdatedAt = dateNow;
+                    deviceDto.UserId = userId;
+                    deviceDto.Active = true;
 
-                await _deviceService.CreateDeviceAsync(deviceDto);
+                    await _deviceService.CreateDeviceAsync(deviceDto);
 
-                return Ok(deviceDto);
+                    return Ok("Device added sucesfuly.");
+                }
+                return Ok("Device has already been added previously.");
 
             }
             catch (Exception ex) { 
-                return BadRequest(ex);
+                Console.WriteLine(ex.Message);
+                return BadRequest(ex.Message);
             }
             
 

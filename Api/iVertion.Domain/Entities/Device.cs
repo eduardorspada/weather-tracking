@@ -32,7 +32,7 @@ namespace iVertion.Domain.Entities
                       int personId,
                       bool active)
         {
-            DomainExceptionValidation.When(id <= 0,
+            DomainExceptionValidation.When(id < 0,
                                            "Invalid Id, must greater than zero.");
             ValidationDomain(token,
                              deviceName,

@@ -10,7 +10,8 @@ class NetworkService {
 
   // Metodo que retorna a a weather condition atual
   Future<Map<String, dynamic>> GetWeatherCondition(String cityName) async {
-    final String url = '${baseUrl}Weather/GetWeatherConditionsAsync?CityName=${cityName}&Active=true';
+    final String url =
+        '${baseUrl}Weather/GetWeatherConditionsAsync?CityName=${cityName}&Active=true';
     final token = await _authService.getToken();
 
     final response = await http.get(
@@ -49,6 +50,31 @@ class NetworkService {
     }
   }
 
+  // Método para registrode novo Address
+  Future<void> registerAddress(String? cityName, String? state, String? stateFull, String? country, String? countryFull) async {
+    const String url = '${baseUrl}Address/AddMyAddressAsync';
+
+    final token = await _authService.getToken();
+
+    final response = await http.post(
+      Uri.parse(url),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $token',
+      },
+      body: json.encode({
+        'cityName': cityName,
+        'state': state,
+        'stateFull': stateFull,
+        'country': country,
+        'countryFull': countryFull
+      }),
+    );
+
+    if (response.statusCode != 200) {
+      throw Exception('Failed to register address ${response.reasonPhrase}');
+    }
+  }
   // Método para registrode novo Person
   Future<void> registerPerson(String firstName, String lastName,
       String? birthday, XFile? profilePicture) async {
@@ -82,6 +108,28 @@ class NetworkService {
       }
     } else {
       throw Exception('No profile picture selected');
+    }
+  }
+
+  // Método para cadastro de um novo dispositivo
+  Future<void> addMyDeviceNotification(String? fcmtoken, String deviceName, bool acceptNotifications) async {
+    const String url = '${baseUrl}Device/AddMyDevice';
+    final token = await _authService.getToken();
+    final response = await http.post(
+      Uri.parse(url),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $token',
+      },
+      body: json.encode({
+        'token': fcmtoken,
+        'deviceName': deviceName,
+        'acceptNotifications': acceptNotifications
+      }),
+    );
+
+    if (response.statusCode != 200) {
+      throw Exception('Failed to add device - ${response.reasonPhrase}');
     }
   }
 

@@ -1,11 +1,11 @@
-﻿using iVertion.Application.DTOs;
+﻿using FirebaseAdmin.Messaging;
+using iVertion.Application.DTOs;
 using iVertion.Application.Interfaces;
 using iVertion.Domain.Account;
 using iVertion.Domain.FiltersDb;
 using iVertion.Infra.Data.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Data;
 
 namespace iVertion.WebApi.Controllers
 {
@@ -22,6 +22,9 @@ namespace iVertion.WebApi.Controllers
         private readonly IWeatherNotificationService _weatherNotificationService;
         private readonly IUserInterface<ApplicationUser> _userService;
         private readonly IDeviceService _deviceService;
+        private readonly IPersonService _personService;
+        private readonly IPersonAddressService _personAddressService;
+        private readonly IAddressService _addressService;
 
         /// <summary>
         /// Weather builder.
@@ -38,7 +41,10 @@ namespace iVertion.WebApi.Controllers
                                  IWeatherAlertService weatherAlertService,
                                  IWeatherNotificationService weatherNotificationService,
                                  IUserInterface<ApplicationUser> userSevice,
-                                 IDeviceService deviceService)
+                                 IDeviceService deviceService,
+                                 IPersonService personService,
+                                 IPersonAddressService personAddressService,
+                                 IAddressService addressService)
         {
             _weatherConditionService = weatherConditionService ??
                 throw new ArgumentNullException(nameof(weatherConditionService));
@@ -52,6 +58,12 @@ namespace iVertion.WebApi.Controllers
                 throw new ArgumentNullException(nameof(userSevice));
             _deviceService = deviceService ??
                 throw new ArgumentNullException(nameof(deviceService));
+            _personService = personService ??
+                throw new ArgumentNullException(nameof(personService));
+            _personAddressService = personAddressService ??
+                throw new ArgumentNullException(nameof(personAddressService));
+            _addressService = addressService ??
+                throw new ArgumentNullException(nameof(addressService));
         }
         /// <summary>
         /// Returns the weather condition.
@@ -383,6 +395,108 @@ namespace iVertion.WebApi.Controllers
                 return BadRequest(ex);
             }
         }
+        [HttpPost]
+        [Authorize]
+        public async Task RunSetNextNotificationsAsync(){
+        
+          await SetNextNotificationsAsync();
+        
+        }
+        private async Task SetNextNotificationsAsync() {
+            var dateNow = DateTime.UtcNow;
+            var weatherAlertFilterDb = new WeatherAlertFilterDb(){
+                Active = true,
+                IntialAlertTime = dateNow.AddMinutes(-1)
+            };
+            
+            
+            var weatherAlerts = await _weatherAlertService.GetWeatherAlertsAsync(weatherAlertFilterDb);
+            foreach (WeatherAlertDTO weatherAlertDto in weatherAlerts.Data.Data){
+                int cityId = weatherAlertDto.CityId;
+                int weatherAlertId = weatherAlertDto.Id;
+                string? message = weatherAlertDto.Message;
+                
 
+                var addressFilterDb = new AddressFilterDb(){
+                    Active = true,
+                    CityId = cityId
+                };
+                
+                var addresses = await _addressService.GetAddressesAsync(addressFilterDb);
+                foreach(AddressDTO addressDto in addresses.Data.Data){
+                    var personAddressFilterDb = new PersonAddressFilterDb(){
+                        AddressId = addressDto.Id,
+                        Active = true
+                    };
+                    
+                    var personAddresses = await _personAddressService.GetPersonAddressesAsync(personAddressFilterDb);
+                    foreach(PersonAddressDTO personAddressDto in personAddresses.Data.Data){
+                        var deviceFilterDb = new DeviceFilterDb(){
+                            Active = true,
+                            AcceptNotifications = true,
+                            PersonId = personAddressDto.PersonId
+                        };
+                        
+                        var devices = await _deviceService.GetDevicesAsync(deviceFilterDb);
+                        foreach(DeviceDTO deviceDto in devices.Data.Data){
+                            var weatherNotificationDto = new WeatherNotificationDTO(){
+                                IsRead = false,
+                                RetryCount = 0,
+                                SentAt = dateNow,
+                                NextRetryAt = dateNow.AddMinutes(30),
+                                WeatherAlertId = weatherAlertDto.Id,
+                                DeviceId = deviceDto.Id,
+                                Active = true
+                            };
+                            
+                            await _weatherNotificationService.CreateWeatherNotificationAsync(weatherNotificationDto);
+                        }
+                    }
+                }
+
+            }
+        }
+        [HttpPost("RunSendNotificationAsync")]
+        [Authorize]
+        public async Task RunSendNotificationAsync(){
+            var dateNow = DateTime.UtcNow;
+            var weatherNotificationFilterDb = new WeatherNotificationFilterDb(){
+                MaxRetryCount = 9,
+                IsRead = false,
+                Active = true,
+                IntialNextRetryAt = dateNow.AddMinutes(-1),
+                FinalNextRetryAt = dateNow.AddMinutes(1)
+            };
+            
+            Console.WriteLine("Weather Notifications");
+
+            var weatherNotifications = await _weatherNotificationService.GetWeatherNotificationsAsync(weatherNotificationFilterDb);
+            foreach (WeatherNotificationDTO weatherNotificationDto in weatherNotifications.Data.Data){
+                var device = await _deviceService.GetDeviceByIdAsync(weatherNotificationDto.DeviceId);
+                var alert = await _weatherAlertService.GetWeatherAlertByIdAsync(weatherNotificationDto.WeatherAlertId);
+                weatherNotificationDto.RetryCount++;
+                weatherNotificationDto.NextRetryAt = dateNow.AddMinutes(10-weatherNotificationDto.RetryCount);
+                Console.WriteLine(weatherNotificationDto.NextRetryAt);
+                await _weatherNotificationService.UpdateWeatherNotificationAsync(weatherNotificationDto);
+                await SendNotificationAsync(device.Data.Token, "Weather Tracking", alert.Data.Message);
+            }
+        }
+        private async Task<string> SendNotificationAsync(string deviceToken, string title, string body){
+            
+            var message = new Message()
+            {
+                Token = deviceToken,
+                Notification = new Notification()
+                {
+                    Title = title,
+                    Body = body
+                },
+            };
+            Console.WriteLine("Enviando notificação");
+            string response = await FirebaseMessaging.DefaultInstance.SendAsync(message);
+            Console.WriteLine("Notificação enviada");
+            Console.WriteLine(response);
+            return response;
+        }
     }
 }

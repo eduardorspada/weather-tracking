@@ -8,6 +8,7 @@ namespace iVertion.Domain.FiltersDb
         public int? CityId { get; set; }
         public int? StateId { get; set; }
         public int? CountryId { get; set; }
+        public string? UserId { get; set; }
         public bool? Active { get; set; }
     }
 }

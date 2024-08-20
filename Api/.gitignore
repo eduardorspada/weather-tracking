@@ -459,3 +459,4 @@ $RECYCLE.BIN/
 !.vscode/extensions.json
 iVertion.WebApi/appsettings.Development.json
 iVertion.WebApi/appsettings.json
+iVertion.WebApi/weather-tracking-OAuth2.json

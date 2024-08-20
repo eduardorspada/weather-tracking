@@ -10,8 +10,5 @@ namespace iVertion.Application.DTOs
         [MaxLength(150)]
         [DisplayName("Name")]
         public string? Name { get; set; }
-        [Required(ErrorMessage = "Code is required.")]
-        [DisplayName("Code")]
-        public int Code { get; set; }
     }
 }

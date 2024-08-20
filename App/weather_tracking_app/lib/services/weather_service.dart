@@ -8,7 +8,7 @@ class WeatherService {
     try {
       final apiResponse = await _networkService.GetWeatherCondition(location);
 
-      if (apiResponse != null && apiResponse['isSuccess']) {
+      if (apiResponse['isSuccess']) {
         // Extraímos o primeiro item da lista de dados dentro de 'data'
         final weatherData = apiResponse['data']['data'][0];
 

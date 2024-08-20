@@ -23,9 +23,6 @@ namespace iVertion.Infra.Data.Repositories
             if (!String.IsNullOrEmpty(request.Acronym)) {
                 countries = countries.Where(c => c.Acronym.Contains(request.Acronym));
             }
-            if (request.Code != null) {
-                countries = countries.Where(a => a.Code == request.Code);
-            }
 
             return await PagedBaseResponseHelper
                             .GetResponseAsync<PagedBaseResponse<Country>, Country>(countries, request);

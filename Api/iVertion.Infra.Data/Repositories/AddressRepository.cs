@@ -28,6 +28,10 @@ namespace iVertion.Infra.Data.Repositories
             if (request.CountryId != null) {
                 addresses = addresses.Where(a => a.CountryId == request.CountryId);
             }
+            if (request.UserId != null) {
+                addresses = addresses.Where(a => a.UserId == request.UserId);
+            }
+            addresses = addresses.Where(a => a.Active == request.Active);
 
             return await PagedBaseResponseHelper
                             .GetResponseAsync<PagedBaseResponse<Address>, Address>(addresses, request);

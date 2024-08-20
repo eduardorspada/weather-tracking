@@ -4,6 +4,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import '../../viewmodels/weather_viewmodel.dart';
 import '../../widgets/profile_widget.dart';
 import '../../widgets/weather_card_widget.dart';
+import '../../services/notification_service.dart'; // Importe o serviço de notificação
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -11,9 +12,11 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final weatherViewModel = Modular.get<WeatherViewModel>();
+    final notificationService = Modular.get<NotificationService>(); // Obtenha a instância do serviço de notificação
 
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      weatherViewModel.loadWeather();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await weatherViewModel.loadWeather();
+      await notificationService.initialize(); // Inicialize o serviço de notificação
     });
 
     return Scaffold(

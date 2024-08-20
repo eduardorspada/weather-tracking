@@ -36,6 +36,7 @@ abstract class _WeatherViewModelBase with Store {
 
         // Obter cidade e estado usando Google Places API
         final cityState = await _googlePlacesService.getCityAndState(lat, lon);
+        
         final cityName = '${cityState['city']}, ${cityState['state']}';
         print(cityName);
 

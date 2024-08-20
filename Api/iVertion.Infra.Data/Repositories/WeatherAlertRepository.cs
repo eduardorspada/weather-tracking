@@ -30,21 +30,21 @@ namespace iVertion.Infra.Data.Repositories
                 weatherAlerts = weatherAlerts.Where(wa => wa.Message.Contains(request.Message));
             if(request.CityId > 0)
                 weatherAlerts = weatherAlerts.Where(wa => wa.CityId == request.CityId);
-            if ((request.IntialAlertTime != null || request.FinalAlertTime != null) || (request.IntialAlertTime != null && request.FinalAlertTime != null))
+            if (request.IntialAlertTime != null || request.FinalAlertTime != null)
             {
                 if (request.IntialAlertTime != null && request.FinalAlertTime != null)
                 {
-                    weatherAlerts = weatherAlerts.Where(wc => wc.AlertTime <= request.IntialAlertTime && wc.AlertTime >= request.FinalAlertTime);
+                    weatherAlerts = weatherAlerts.Where(wc => wc.AlertTime >= request.IntialAlertTime && wc.AlertTime <= request.FinalAlertTime);
                 }
                 else
                 {
                     if (request.IntialAlertTime != null)
                     {
-                        weatherAlerts = weatherAlerts.Where(wc => wc.AlertTime <= request.IntialAlertTime);
+                        weatherAlerts = weatherAlerts.Where(wc => wc.AlertTime >= request.IntialAlertTime);
                     }
                     else
                     {
-                        weatherAlerts = weatherAlerts.Where(wc => wc.AlertTime >= request.FinalAlertTime);
+                        weatherAlerts = weatherAlerts.Where(wc => wc.AlertTime <= request.FinalAlertTime);
                     }
                 }
 

@@ -29,21 +29,21 @@ namespace iVertion.Infra.Data.Repositories
                 weatherConditions = weatherConditions.Where(wc => wc.Description.Contains(request.Description));
             if(request.CityId > 0)
                 weatherConditions = weatherConditions.Where(wc => wc.CityId == request.CityId);
-            if((request.IntialDate != null || request.FinalDate != null) || (request.IntialDate != null && request.FinalDate != null))
+            if(request.IntialDate != null || request.FinalDate != null)
             {
                 if (request.IntialDate != null && request.FinalDate != null)
                 {
-                    weatherConditions = weatherConditions.Where(wc => wc.CreatedAt <= request.IntialDate && wc.CreatedAt >= request.FinalDate);
+                    weatherConditions = weatherConditions.Where(wc => wc.CreatedAt >= request.IntialDate && wc.CreatedAt <= request.FinalDate);
                 }
                 else
                 {
                     if(request.IntialDate != null)
                     {
-                        weatherConditions = weatherConditions.Where(wc => wc.CreatedAt <= request.IntialDate);
+                        weatherConditions = weatherConditions.Where(wc => wc.CreatedAt >= request.IntialDate);
                     }
                     else
                     {
-                        weatherConditions = weatherConditions.Where(wc => wc.CreatedAt >= request.FinalDate);
+                        weatherConditions = weatherConditions.Where(wc => wc.CreatedAt <= request.FinalDate);
                     }
                 }
 

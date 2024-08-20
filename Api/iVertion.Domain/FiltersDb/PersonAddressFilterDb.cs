@@ -6,5 +6,6 @@ namespace iVertion.Domain.FiltersDb
     {
         public int PersonId { get; set; }
         public int AddressId { get; set; }
+        public bool Active { get; set; }
     }
 }

@@ -7,46 +7,38 @@ namespace iVertion.Domain.Entities
     {
         public string? Name { get; private set; }
         public string? Acronym { get; private set; }
-        public int Code { get; private set; }
         public IEnumerable<Address>? Addresses { get; set; }
 
         public Country(string name,
                        string acronym,
-                       int code,
                        bool active)
         {
             ValidationDomain(name,
-                             acronym,
-                             code);
+                             acronym);
             Active = active;            
         }
         public Country(int id,
                        string name,
                        string acronym,
-                       int code,
                        bool active)
         {
-            DomainExceptionValidation.When(id <= 0,
+            DomainExceptionValidation.When(id < 0,
                                            "Invalid Id, must greater than zero.");
             ValidationDomain(name,
-                             acronym,
-                             code);
+                             acronym);
             Id      = id;
             Active  = active;            
         }
         public void Update(string name,
                            string acronym,
-                           int code,
                            bool active)
         {
             ValidationDomain(name,
-                             acronym,
-                             code);
+                             acronym);
             Active = active;            
         }
         private void ValidationDomain(string name,
-                                      string acronym,
-                                      int code)
+                                      string acronym)
         {
             DomainExceptionValidation.When(String.IsNullOrEmpty(name),
                                            "Name cannot be null or empty.");
@@ -60,11 +52,8 @@ namespace iVertion.Domain.Entities
                                            "Acronym must have at least 2 characters.");
             DomainExceptionValidation.When(acronym?.Length > 5,
                                            "Acronym must have a maximum of 5 characters.");
-            DomainExceptionValidation.When(code <= 0,
-                                           "Invalid Code, must greater than zero.");
             Name    = name;
             Acronym = acronym;
-            Code    = code;
         }
     }
 }

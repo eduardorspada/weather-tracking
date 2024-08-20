@@ -30,27 +30,27 @@ namespace iVertion.Infra.Data.Repositories
                 weatherForecasts = weatherForecasts.Where(wf => wf.Description.Contains(request.Description));
             if(request.CityId > 0)
                 weatherForecasts = weatherForecasts.Where(wf => wf.CityId == request.CityId);
-            if ((request.IntialDate != null || request.FinalDate != null) || (request.IntialDate != null && request.FinalDate != null))
+            if (request.IntialDate != null || request.FinalDate != null)
             {
                 if (request.IntialDate != null && request.FinalDate != null)
                 {
-                    weatherForecasts = weatherForecasts.Where(wc => wc.Date <= request.IntialDate && wc.Date >= request.FinalDate);
+                    weatherForecasts = weatherForecasts.Where(wc => wc.Date >= request.IntialDate && wc.Date <= request.FinalDate);
                 }
                 else
                 {
                     if (request.IntialDate != null)
                     {
-                        weatherForecasts = weatherForecasts.Where(wc => wc.Date <= request.IntialDate);
+                        weatherForecasts = weatherForecasts.Where(wc => wc.Date >= request.IntialDate);
                     }
                     else
                     {
-                        weatherForecasts = weatherForecasts.Where(wc => wc.Date >= request.FinalDate);
+                        weatherForecasts = weatherForecasts.Where(wc => wc.Date <= request.FinalDate);
                     }
                 }
 
             }
-            if (request.Active != null)
-                weatherForecasts = weatherForecasts.Where(wc => wc.Active == request.Active);
+            
+            weatherForecasts = weatherForecasts.Where(wc => wc.Active == request.Active);
 
             return await PagedBaseResponseHelper
                         .GetResponseAsync<PagedBaseResponse<WeatherForecast>, WeatherForecast>(weatherForecasts, request);

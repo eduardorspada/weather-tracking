@@ -1,6 +1,8 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using FirebaseAdmin.Auth;
+using Hangfire;
 using iVertion.Application.DTOs;
 using iVertion.Application.Interfaces;
 using iVertion.Domain.Account;
@@ -56,23 +58,22 @@ namespace iVertion.WebApi.Controllers
             _configuration = configuration;
         }
 
-        [HttpGet("google-login")]
-        public async Task<ActionResult<UserToken>> GoogleLogin(string code)
+        [HttpPost]
+        [Route("google-login")]
+        public async Task<ActionResult> GoogleLogin([FromBody] string idToken)
         {
             try
             {
-            Console.WriteLine($"Code: {code}");    
-            var token = await _googleAuthService.GetGoogleAuthTokenAsync(code);
-            Console.WriteLine($"Token: {token}");    
-            var userInfo = await _googleAuthService.GetGoogleUserInfoAsync(token);
+            FirebaseToken decodedToken = await FirebaseAuth.DefaultInstance.VerifyIdTokenAsync(idToken);
+            string uid = decodedToken.Uid;
 
-            // Verifique se o usuário já existe, caso contrário, crie-o
-
-            ApplicationUser user = await _userService.FindOrCreateUserAsync(userInfo.Email);
+            ApplicationUser user = await _userService.FindOrCreateUserAsync(decodedToken.Claims["email"].ToString());
 
             if (user.IsEnabled)
             {
-                return await GenerateTokenAsync(userInfo.Email, userInfo.Name);
+                UserToken token = await GenerateTokenAsync(decodedToken.Claims["email"].ToString());
+                return Ok(token);
+
             }
             else
             {
@@ -83,8 +84,8 @@ namespace iVertion.WebApi.Controllers
             {
                 return BadRequest(e);
             }
-
         }
+
 
         private async Task<List<string>> GetAllUserRolesAsync(int userProfileId, string targetUserId){
             var roleProfileFilterdb = new RoleProfileFilterDb(){
@@ -145,7 +146,7 @@ namespace iVertion.WebApi.Controllers
             }
             return true;
         }
-        private async Task<UserToken> GenerateTokenAsync(string email, string name)
+        private async Task<UserToken> GenerateTokenAsync(string email)
         {
             var user = await _userService.GetUserByNameAsync(email);
             var newRoles = await GetAllUserRolesAsync(user.UserProfileId, user.Id);

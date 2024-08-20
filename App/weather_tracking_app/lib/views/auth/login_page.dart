@@ -86,7 +86,7 @@ class LoginPage extends StatelessWidget {
                           'assets/google_icon.png',
                           height: 24,
                         ),
-                        onPressed: () => viewModel.loginWithGoogle(context),
+                        onPressed: () => viewModel.loginWithGoogle(),
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.white,
                           padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),

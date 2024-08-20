@@ -172,12 +172,13 @@ class NetworkService {
     }
   }
 
-  Future<Map<String, dynamic>> loginWithGoogle(String code) async {
+  Future<Map<String, dynamic>> loginWithGoogle(String? idToken) async {
     const String url = '${baseUrl}Account/google-login';
 
-    final response = await http.get(
-      Uri.parse('$url?code=$code'),
+    final response = await http.post(
+      Uri.parse(url),
       headers: {'Content-Type': 'application/json'},
+      body: json.encode(idToken),
     );
 
     if (response.statusCode == 200) {

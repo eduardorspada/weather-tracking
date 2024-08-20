@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:url_launcher/url_launcher.dart';
 import '../services/auth_service.dart';
 import '../services/network_service.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthViewModel extends ChangeNotifier {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
   final NetworkService _networkService = NetworkService();
   final AuthService _authService = AuthService();
 
   bool isLoading = false;
   String? errorMessage;
 
-    bool _isSignUpMode = false;
+  bool _isSignUpMode = false;
 
   bool get isSignUpMode => _isSignUpMode;
 
@@ -24,8 +26,7 @@ class AuthViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-
-    // Método de Cadastro (Sign Up)
+  // Método de Cadastro (Sign Up)
   Future<void> signUp(BuildContext context) async {
     isLoading = true;
     errorMessage = null;
@@ -33,11 +34,8 @@ class AuthViewModel extends ChangeNotifier {
 
     try {
       // Realiza o cadastro
-      await _networkService.signupUser(
-        emailController.text,
-        passwordController.text,
-        confirmPasswordController.text
-      );
+      await _networkService.signupUser(emailController.text,
+          passwordController.text, confirmPasswordController.text);
 
       // Se o cadastro for bem-sucedido, faz login automaticamente
       await login(context);
@@ -67,7 +65,7 @@ class AuthViewModel extends ChangeNotifier {
         emailController.text,
         passwordController.text,
       );
-      
+
       // Verificar userProfileId após login
       final userInfo = await _networkService.getMyUserInformation();
 
@@ -85,30 +83,46 @@ class AuthViewModel extends ChangeNotifier {
     }
   }
 
-  Future<void> loginWithGoogle(BuildContext context) async {
-    isLoading = true;
-    errorMessage = null;
-    notifyListeners();
-
+  Future<void> loginWithGoogle() async {
     try {
-      final Uri googleAuthUrl = Uri.parse(
-          'https://accounts.google.com/o/oauth2/auth?client_id=887198971078-fr2b8n2o950jk8sesdh6qo3vqhdrfb13.apps.googleusercontent.com&redirect_uri=http://localhost:5001/api/Account/google-login&response_type=code&scope=profile email');
+      // Inicia o processo de login com Google
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-      // Abre o navegador para o usuário obter o código de autorização
-      if (await canLaunchUrl(googleAuthUrl)) {
-        await launchUrl(
-          googleAuthUrl,
-          mode: LaunchMode.externalApplication,
-        );
-      } else {
-        throw 'Não foi possível abrir o navegador';
+      // Se o usuário abortar o login
+      if (googleUser == null) {
+        print("Google sign-in was aborted.");
+        return;
       }
+
+      // Autentica o usuário no Google e obtém os tokens
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
+
+      // Cria uma credencial com os tokens recebidos
+      final OAuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      // Usa a credencial para autenticar no Firebase
+      UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithCredential(credential);
+
+      String? idToken = await FirebaseAuth.instance.currentUser?.getIdToken();
+
+      print(idToken);
+
+      final userInfo = await _networkService.loginWithGoogle(idToken);
+      if (userInfo['personId'] == 0) {
+        Modular.to.pushReplacementNamed('/register_person');
+      } else {
+        Modular.to.pushReplacementNamed('/home');
+      }
+      // Usuário autenticado com sucesso
+      print("User signed in: ${userCredential.user?.displayName}");
     } catch (e) {
-      print('Erro de login com Google: ${e.toString()}');
-      errorMessage = 'Google login failed. Please try again.';
-    } finally {
-      isLoading = false;
-      notifyListeners();
+      // Tratamento de erro
+      print("Error during Google sign-in: $e");
     }
   }
 }

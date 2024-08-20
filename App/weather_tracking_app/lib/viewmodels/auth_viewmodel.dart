@@ -113,7 +113,8 @@ class AuthViewModel extends ChangeNotifier {
       print(idToken);
 
       final userInfo = await _networkService.loginWithGoogle(idToken);
-      if (userInfo['personId'] == 0) {
+      print(userInfo['personId']);
+      if (userInfo['personId'] == null) {
         Modular.to.pushReplacementNamed('/register_person');
       } else {
         Modular.to.pushReplacementNamed('/home');
